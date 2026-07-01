@@ -487,7 +487,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
    3. Replace "YOUR_FORM_ID" below with your real form ID
    Until you do this, the form will show a message instead of sending.
 ========================================================= */
-const FORMSPREE_ID = "https://formspree.io/f/mvzjwolk"; // <-- apna Formspree form ID yahan dalein
+const FORMSPREE_ID = "YOUR_FORM_ID"; // <-- apna Formspree form ID yahan dalein
 
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
@@ -496,10 +496,10 @@ const submitBtn = document.getElementById('contactSubmitBtn');
 contactForm.addEventListener('submit', async function(e){
   e.preventDefault();
 
-  if (FORMSPREE_ID === "https://formspree.io/f/mvzjwolk") {
+  if (FORMSPREE_ID === "YOUR_FORM_ID") {
     formStatus.style.display = 'block';
     formStatus.style.color = '#c0392b';
-    formStatus.innerHTML = 'The form is not connected yet — set `formspree_id` in `contact.html` (see comment above).';
+    formStatus.innerHTML = 'Form abhi connect nahi hua — contact.html mein FORMSPREE_ID set karein (dekhein comment upar).';
     return;
   }
 
@@ -508,7 +508,7 @@ contactForm.addEventListener('submit', async function(e){
   formStatus.style.display = 'none';
 
   try {
-    const response = await fetch(`https://formspree.io/f/mvzjwolk`, {
+    const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: new FormData(contactForm)
