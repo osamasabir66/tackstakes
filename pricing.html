@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — TackStakes</title>
+<meta name="description" content="TackStakes pricing: Logo Design, Custom Website, E-Commerce, SEO, SMM, Animation, Web/App Solution and Branding packages.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+/* ===== Same design tokens as index.html — keep both files in sync if you change colors ===== */
+:root{
+  --bg:        #F6F3EC;
+  --bg-soft:   #EFEAE0;
+  --card:      #FFFFFF;
+  --ink:       #15161B;
+  --ink-soft:  #5B5D66;
+  --accent:    #1F9D55;
+  --accent-2:  #C8FF4D;
+  --line:      rgba(21,22,27,0.12);
+
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-body); overflow-x:hidden;}
+h1,h2,h3,h4{font-family:var(--font-display); font-weight:700; letter-spacing:-0.02em; margin:0;}
+p{color:var(--ink-soft); line-height:1.7;}
+a{text-decoration:none; color:inherit;}
+.container-x{width:100%; max-width:1240px; margin:0 auto; padding:0 24px;}
+.eyebrow{
+  font-family:var(--font-mono); font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
+  color:var(--accent); display:inline-flex; align-items:center; gap:8px; margin-bottom:16px;
+}
+.eyebrow::before{content:"//"; color:var(--ink-soft);}
+.btn-tack{
+  font-family:var(--font-mono); font-size:14px; font-weight:500; padding:14px 26px; border-radius:100px;
+  display:inline-flex; align-items:center; gap:10px; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  white-space:nowrap; border:none; cursor:pointer;
+}
+.btn-tack-primary{background:var(--ink); color:var(--bg); border:1px solid var(--ink);}
+.btn-tack-primary:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(21,22,27,0.25); background:var(--accent); border-color:var(--accent); color:#fff;}
+.btn-tack-outline{background:transparent; color:var(--ink); border:1px solid var(--line);}
+.btn-tack-outline:hover{border-color:var(--ink); transform:translateY(-3px);}
+
+/* ===== Navbar (same as index.html) ===== */
+.navbar-tack{position:fixed; top:0; left:0; right:0; z-index:1000; padding:20px 0; transition:all .35s ease;}
+.navbar-tack.scrolled{padding:12px 0; background:rgba(246,243,236,0.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--line);}
+.nav-inner{display:flex; align-items:center; justify-content:space-between;}
+.logo{font-family:var(--font-display); font-weight:800; font-size:22px; display:flex; align-items:center; gap:8px;}
+.logo span{width:10px;height:10px;border-radius:50%; background:var(--accent-2); display:inline-block; box-shadow:0 0 0 4px rgba(63,70,255,0.12);}
+.nav-links{display:flex; gap:36px; list-style:none; margin:0; padding:0; font-size:15px; font-weight:500;}
+.nav-links a{position:relative; padding-bottom:4px;}
+.nav-links a::after{content:""; position:absolute; left:0; bottom:0; width:0; height:1.5px; background:var(--ink); transition:width .3s ease;}
+.nav-links a:hover::after, .nav-links a.active::after{width:100%;}
+.nav-links a.active{color:var(--accent);}
+
+/* ===== Page header / sub-hero ===== */
+.page-header{padding:160px 0 60px; position:relative; overflow:hidden;}
+.page-header h1{font-size:clamp(2.4rem, 6vw, 4rem);}
+.page-header p{max-width:560px; font-size:17px; margin-top:20px;}
+.subhero-blob{
+  position:absolute; width:420px; height:420px; border-radius:50%;
+  background:radial-gradient(circle, var(--accent-2) 0%, transparent 70%);
+  opacity:0.3; filter:blur(40px); top:-10%; right:-4%; z-index:-1;
+}
+.subhero-headline .line{overflow:hidden; display:block;}
+.subhero-headline .line span{display:inline-block; transform:translateY(110%); animation:riseUp .9s cubic-bezier(.16,1,.3,1) forwards;}
+.subhero-headline .line:nth-child(1) span{animation-delay:.05s;}
+.subhero-headline .line:nth-child(2) span{animation-delay:.18s; color:var(--accent);}
+@keyframes riseUp{to{transform:translateY(0);}}
+
+.subhero-visual{position:relative; min-height:300px;}
+.float-card{
+  position:absolute; background:var(--card); border:1px solid var(--line);
+  border-radius:20px; padding:22px; box-shadow:0 20px 50px rgba(21,22,27,0.08);
+  animation:floatY 7s ease-in-out infinite;
+}
+@keyframes floatY{0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);}}
+
+/* ===== Category filter tabs ===== */
+.pricing-tabs{
+  display:flex; gap:10px; flex-wrap:wrap; margin-bottom:56px;
+}
+.pricing-tab{
+  font-family:var(--font-mono); font-size:13.5px; padding:11px 20px; border-radius:100px;
+  border:1px solid var(--line); background:var(--card); color:var(--ink-soft);
+  cursor:pointer; transition:all .25s ease; white-space:nowrap;
+}
+.pricing-tab:hover{border-color:var(--ink); color:var(--ink);}
+.pricing-tab.active{background:var(--ink); color:var(--bg); border-color:var(--ink);}
+
+/* ===== Category intro ===== */
+.category-intro{margin-bottom:40px;}
+.category-intro h2{font-size:clamp(1.8rem, 3.5vw, 2.6rem);}
+.category-intro p{margin-top:10px; max-width:600px;}
+
+/* ===== Pricing cards ===== */
+.price-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:38px 32px;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.price-card:hover{transform:translateY(-8px); box-shadow:0 24px 50px rgba(21,22,27,0.10);}
+.price-card.popular{border:1.5px solid var(--accent); background:linear-gradient(180deg, #fff, #FBFBFF);}
+.badge-popular{
+  position:absolute; top:-14px; left:32px;
+  background:var(--accent); color:#fff;
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em; text-transform:uppercase;
+  padding:6px 16px; border-radius:100px;
+}
+.price-tier-name{
+  font-family:var(--font-mono); font-size:13px; text-transform:uppercase; letter-spacing:.05em;
+  color:var(--ink-soft); margin-bottom:14px;
+}
+.price-amount{
+  font-family:var(--font-display); font-weight:800; font-size:42px; line-height:1;
+  display:flex; align-items:baseline; gap:6px; margin-bottom:6px;
+}
+.price-period{font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); margin-bottom:26px;}
+.price-features{list-style:none; margin:0 0 30px; padding:0; flex-grow:1;}
+.price-features li{
+  font-size:14.5px; color:var(--ink);
+  padding:12px 0; border-top:1px solid var(--line);
+  display:flex; align-items:flex-start; gap:10px;
+}
+.price-features li:first-child{border-top:none;}
+.price-features li i{color:var(--accent); margin-top:3px; flex-shrink:0;}
+.price-card.popular .price-features li i{color:var(--accent);}
+.price-select-btn{width:100%; justify-content:center;}
+
+/* ===== CTA banner (reuse) ===== */
+.cta-banner{
+  background:var(--ink); border-radius:32px; padding:70px 50px; text-align:center; position:relative; overflow:hidden; margin-top:40px;
+}
+.cta-banner h2{color:var(--bg); font-size:clamp(1.8rem,4vw,2.8rem); max-width:640px; margin:0 auto 26px;}
+.cta-banner .glow{position:absolute; width:400px; height:400px; background:var(--accent-2); filter:blur(120px); opacity:.25; top:-100px; left:50%; transform:translateX(-50%);}
+
+/* ===== Note strip ===== */
+.price-note{
+  font-size:13.5px; color:var(--ink-soft); margin-top:50px;
+  border-top:1px solid var(--line); padding-top:24px;
+}
+
+/* ===== Footer (same as index.html) ===== */
+footer{background:var(--ink); color:var(--bg); padding:90px 0 30px;}
+footer h5{font-family:var(--font-mono); font-size:13px; text-transform:uppercase; color:var(--accent-2); margin-bottom:18px;}
+footer p, footer a{color:rgba(246,243,236,0.65); font-size:14.5px;}
+footer a:hover{color:#fff;}
+.footer-logo{font-family:var(--font-display); font-weight:800; font-size:26px; color:var(--bg);}
+.social-icon{width:38px;height:38px;border-radius:50%; border:1px solid rgba(246,243,236,0.2); display:inline-flex;align-items:center;justify-content:center; margin-right:10px; transition:all .25s ease;}
+.social-icon:hover{background:var(--accent-2); border-color:var(--accent-2); color:var(--ink);}
+.footer-bottom{border-top:1px solid rgba(246,243,236,0.12); margin-top:60px; padding-top:24px; font-size:13px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(246,243,236,0.5);}
+
+@media (max-width: 991px){
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+<nav class="navbar-tack" id="mainNav">
+  <div class="container-x nav-inner">
+    <a href="index.html" class="logo"><span></span>TackStakes</a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="pricing.html" class="active">Pricing</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="btn-tack btn-tack-primary d-none d-lg-inline-flex">Start a Project</a>
+    <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav">
+      <i class="bi bi-list" style="font-size:28px;"></i>
+    </button>
+  </div>
+</nav>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNav" style="background:var(--bg); width:260px;">
+  <div class="offcanvas-header">
+    <span class="logo"><span></span>TackStakes</span>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column gap-3" style="font-family:var(--font-mono); font-size:15px;">
+    <a href="index.html#services">Services</a>
+    <a href="index.html#work">Work</a>
+    <a href="index.html#about">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html" class="btn-tack btn-tack-primary mt-3">Start a Project</a>
+  </div>
+</div>
+
+<!-- =========================================================
+     PAGE HEADER
+========================================================= -->
+<header class="page-header">
+  <div class="subhero-blob"></div>
+  <div class="container-x">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="eyebrow">Pricing</div>
+        <h1 class="subhero-headline">
+          <span class="line"><span>Simple packages for</span></span>
+          <span class="line"><span>every stage of growth.</span></span>
+        </h1>
+        <p>Pick a service below to see our packages. Every plan includes a dedicated team member, clear timelines, and full ownership of your final files — no hidden fees.</p>
+      </div>
+      <div class="col-lg-5">
+        <div class="subhero-visual d-none d-lg-block">
+          <div class="float-card" style="top:0; right:6%; width:250px;">
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-soft); letter-spacing:.05em;">Most Popular</div>
+            <div style="font-family:var(--font-display); font-weight:800; font-size:24px; margin:8px 0 4px;">Growth Package</div>
+            <div style="font-family:var(--font-display); font-weight:800; font-size:36px; color:var(--accent);">$520</div>
+            <ul style="list-style:none; padding:0; margin:16px 0 0; font-size:13px; color:var(--ink);">
+              <li class="mb-2"><i class="bi bi-check-circle-fill" style="color:var(--accent);"></i> CMS / admin panel</li>
+              <li class="mb-2"><i class="bi bi-check-circle-fill" style="color:var(--accent);"></i> SEO-friendly structure</li>
+              <li><i class="bi bi-check-circle-fill" style="color:var(--accent);"></i> Social integration</li>
+            </ul>
+          </div>
+          <div class="float-card" style="bottom:2%; left:0; width:170px; animation-direction:reverse;">
+            <div style="font-family:var(--font-display); font-weight:800; font-size:32px; color:var(--ink);">8</div>
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-soft);">Service Categories</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- =========================================================
+     PRICING
+========================================================= -->
+<section class="pb-5">
+  <div class="container-x">
+
+    <!-- Category filter tabs -->
+    <div class="pricing-tabs" id="pricingTabs"></div>
+
+    <!-- Category heading -->
+    <div class="category-intro">
+      <h2 id="categoryTitle"></h2>
+      <p id="categoryDesc"></p>
+    </div>
+
+    <!-- Pricing cards render here -->
+    <div class="row g-4" id="pricingGrid"></div>
+
+    <p class="price-note">
+      * Prices shown are starting rates and may vary based on project scope and timeline. Need something custom?
+      <a href="contact.html" style="color:var(--accent); text-decoration:underline;">Get in touch</a> for a tailored quote.
+    </p>
+
+    <div class="cta-banner">
+      <div class="glow"></div>
+      <div class="eyebrow" style="color:var(--accent-2);">Not sure which package?</div>
+      <h2>Tell us about your project — we'll recommend the right package for your budget.</h2>
+      <a href="contact.html" class="btn-tack btn-tack-primary" style="background:var(--accent-2); color:var(--ink); border-color:var(--accent-2);">
+        Book a Free Call <i class="bi bi-arrow-up-right"></i>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer id="contact">
+  <div class="container-x">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-logo mb-3"><span style="color:var(--accent-2);">/</span>TackStakes</div>
+        <p>Software house and digital marketing agency helping brands build, launch, and grow.</p>
+        <div class="mt-4">
+          <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Company</h5>
+        <div class="d-flex flex-column gap-2">
+          <a href="index.html#about">About</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#work">Work</a>
+          <a href="pricing.html">Pricing</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Services</h5>
+        <div class="d-flex flex-column gap-2">
+          <a href="pricing.html">Web Design</a>
+          <a href="pricing.html">E-Commerce</a>
+          <a href="pricing.html">SEO &amp; SMM</a>
+          <a href="pricing.html">Branding</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h5>Get in touch</h5>
+        <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>1580 N Logan St Ste 660, PMB 897072, Denver, Colorado 80203-1994</p>
+        <p class="mb-2"><i class="bi bi-envelope me-2"></i><a href="mailto:contact@tackstakes.com">contact@tackstakes.com</a></p>
+        <p class="mb-0"><i class="bi bi-telephone me-2"></i><a href="tel:+92000000000">+92 300 000 0000</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 TackStakes. All rights reserved.</div>
+      <div>Built by TackStakes — software &amp; marketing under one roof.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* =========================================================
+   PRICING DATA
+   Yahan se hi saari prices/features edit ho sakti hain.
+   Har category ke andar 3 packages: Starter / Growth / Elite
+========================================================= */
+const pricingData = {
+  logo: {
+    label: "Logo Design",
+    icon: "bi-vector-pen",
+    desc: "Distinct logo concepts built by dedicated designers, with full ownership rights on delivery.",
+    packages: [
+      { name:"Starter", price:45, period:"one-time", popular:false, features:[
+        "3 initial logo concepts","1 dedicated designer","2 rounds of revisions",
+        "Final files (PNG, JPG)","100% ownership rights"
+      ]},
+      { name:"Growth", price:95, period:"one-time", popular:true, features:[
+        "6 initial logo concepts","2 dedicated designers","Unlimited revisions",
+        "Favicon + social avatar set","Final files (AI, SVG, PNG, JPG)","100% ownership rights"
+      ]},
+      { name:"Elite", price:180, period:"one-time", popular:false, features:[
+        "Unlimited logo concepts","3 dedicated designers","Unlimited revisions",
+        "Brand color palette + typography","Basic stationery set (letterhead, card)","All file formats + full ownership"
+      ]}
+    ]
+  },
+  website: {
+    label: "Custom Website",
+    icon: "bi-window-stack",
+    desc: "Hand-coded, responsive websites designed around your brand — no drag-and-drop templates.",
+    packages: [
+      { name:"Starter", price:280, period:"one-time", popular:false, features:[
+        "Up to 5 pages","Mobile responsive design","Basic contact form",
+        "3 stock images included","5–7 day delivery"
+      ]},
+      { name:"Growth", price:520, period:"one-time", popular:true, features:[
+        "Up to 10 pages","CMS / admin panel","Custom forms + lead capture",
+        "SEO-friendly structure","Social media integration","10–14 day delivery"
+      ]},
+      { name:"Elite", price:950, period:"one-time", popular:false, features:[
+        "Up to 20 pages","Custom design system","Advanced animations & interactions",
+        "Multi-language support (optional)","30 days priority support","Full deployment & handover"
+      ]}
+    ]
+  },
+  ecommerce: {
+    label: "E-Commerce",
+    icon: "bi-cart3",
+    desc: "Online stores with secure checkout, product management, and payment gateways built in.",
+    packages: [
+      { name:"Starter", price:450, period:"one-time", popular:false, features:[
+        "Up to 100 products","Shopping cart + checkout","1 payment gateway",
+        "Basic product search","Dedicated developer"
+      ]},
+      { name:"Growth", price:850, period:"one-time", popular:true, features:[
+        "Up to 500 products","Multiple payment gateways","Product reviews & ratings",
+        "Discount / coupon system","Inventory management","Priority support"
+      ]},
+      { name:"Elite", price:1600, period:"one-time", popular:false, features:[
+        "Unlimited products","Custom checkout flow","Multi-currency support",
+        "Advanced analytics dashboard","Dedicated project manager","60 days post-launch support"
+      ]}
+    ]
+  },
+  seo: {
+    label: "SEO",
+    icon: "bi-search",
+    desc: "On-page and off-page optimization that moves your site up the search results that matter.",
+    packages: [
+      { name:"Starter", price:180, period:"per month", popular:false, features:[
+        "5 target keywords","On-page optimization","Technical SEO audit","Monthly ranking report"
+      ]},
+      { name:"Growth", price:350, period:"per month", popular:true, features:[
+        "15 target keywords","On-page + off-page optimization","Content & blog optimization",
+        "Competitor analysis","Bi-weekly reporting"
+      ]},
+      { name:"Elite", price:650, period:"per month", popular:false, features:[
+        "30+ target keywords","Full technical + content SEO","Link building campaign",
+        "Local SEO / Google Business setup","Dedicated account manager","Weekly reporting"
+      ]}
+    ]
+  },
+  smm: {
+    label: "SMM",
+    icon: "bi-megaphone",
+    desc: "Social media strategy, content, and community management that keeps your brand active.",
+    packages: [
+      { name:"Starter", price:220, period:"per month", popular:false, features:[
+        "2 social platforms","8 posts per month","Basic content calendar","Monthly performance report"
+      ]},
+      { name:"Growth", price:420, period:"per month", popular:true, features:[
+        "3 social platforms","16 posts per month","Custom content calendar",
+        "Community management","$100 ad boost credit included"
+      ]},
+      { name:"Elite", price:750, period:"per month", popular:false, features:[
+        "4+ social platforms","Daily posting","Paid ad campaign management",
+        "Influencer outreach support","Dedicated account manager","Weekly analytics report"
+      ]}
+    ]
+  },
+  animation: {
+    label: "Animation",
+    icon: "bi-film",
+    desc: "Explainer videos and motion graphics that simplify your product into something people share.",
+    packages: [
+      { name:"Starter", price:320, period:"one-time", popular:false, features:[
+        "15–20 second video","Script writing","Basic storyboard","Voiceover & sound effects","2 revision rounds"
+      ]},
+      { name:"Growth", price:650, period:"one-time", popular:true, features:[
+        "30–40 second video","Custom storyboard","Brand-style animation",
+        "Voiceover & sound design","3 revision rounds"
+      ]},
+      { name:"Elite", price:1150, period:"one-time", popular:false, features:[
+        "60+ second video","Fully custom animation style","Original script + storyboard",
+        "Professional voiceover","Unlimited revisions"
+      ]}
+    ]
+  },
+  webapp: {
+    label: "Web/App Solution",
+    icon: "bi-code-slash",
+    desc: "Full web and mobile app development — from planning and design to build and deployment.",
+    packages: [
+      { name:"Starter", price:700, period:"one-time", popular:false, features:[
+        "Single platform app (iOS or Android)","Up to 6 core screens","Basic backend / API integration","QA testing"
+      ]},
+      { name:"Growth", price:1600, period:"one-time", popular:true, features:[
+        "Cross-platform app (iOS + Android)","Up to 15 screens","Custom backend & database",
+        "Push notifications","30 days post-launch support"
+      ]},
+      { name:"Elite", price:3500, period:"one-time", popular:false, features:[
+        "Full custom web + mobile solution","Unlimited screens","Scalable backend architecture",
+        "Third-party integrations","Dedicated project manager","90 days post-launch support"
+      ]}
+    ]
+  },
+  branding: {
+    label: "Branding",
+    icon: "bi-palette",
+    desc: "Complete identity systems — color, type, voice, and guidelines — for a consistent brand.",
+    packages: [
+      { name:"Starter", price:160, period:"one-time", popular:false, features:[
+        "Logo + basic style guide","Color palette & typography","Business card design"
+      ]},
+      { name:"Growth", price:380, period:"one-time", popular:true, features:[
+        "Full logo suite","Brand guideline document","Stationery set (letterhead, card, envelope)","Social media kit"
+      ]},
+      { name:"Elite", price:750, period:"one-time", popular:false, features:[
+        "Complete brand identity system","Extensive brand guidelines","Packaging / merchandise design",
+        "Pitch deck / brand presentation template","Dedicated brand strategist"
+      ]}
+    ]
+  }
+};
+
+/* ===== Render tabs ===== */
+const tabsWrap = document.getElementById('pricingTabs');
+Object.keys(pricingData).forEach((key, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'pricing-tab' + (i === 0 ? ' active' : '');
+  btn.dataset.key = key;
+  btn.innerHTML = `<i class="bi ${pricingData[key].icon} me-1"></i> ${pricingData[key].label}`;
+  btn.addEventListener('click', () => selectCategory(key));
+  tabsWrap.appendChild(btn);
+});
+
+/* ===== Render pricing cards for a category ===== */
+function selectCategory(key){
+  // update active tab styling
+  document.querySelectorAll('.pricing-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.key === key);
+  });
+
+  const cat = pricingData[key];
+  document.getElementById('categoryTitle').textContent = cat.label + " Packages";
+  document.getElementById('categoryDesc').textContent = cat.desc;
+
+  const grid = document.getElementById('pricingGrid');
+  grid.innerHTML = '';
+
+  cat.packages.forEach(pkg => {
+    const col = document.createElement('div');
+    col.className = 'col-md-6 col-lg-4';
+
+    // Common trust bullets added to every package for a fuller, more complete list
+    const commonFeatures = pkg.name === 'Elite'
+      ? ["Dedicated project manager","100% satisfaction guarantee","Full ownership of final files"]
+      : ["100% satisfaction guarantee","Full ownership of final files"];
+
+    const allFeatures = pkg.features.concat(commonFeatures);
+
+    const featuresHtml = allFeatures.map(f =>
+      `<li><i class="bi bi-check-circle-fill"></i> ${f}</li>`
+    ).join('');
+
+    col.innerHTML = `
+      <div class="price-card ${pkg.popular ? 'popular' : ''}">
+        ${pkg.popular ? '<span class="badge-popular">Most Popular</span>' : ''}
+        <div class="price-tier-name">${pkg.name} · ${cat.label}</div>
+        <div class="price-amount">$${pkg.price}</div>
+        <div class="price-period">${pkg.period}</div>
+        <ul class="price-features">${featuresHtml}</ul>
+        <a href="contact.html" class="btn-tack btn-tack-primary price-select-btn">Select Package</a>
+      </div>
+    `;
+    grid.appendChild(col);
+  });
+}
+
+/* Initial render */
+selectCategory('logo');
+
+/* ===== Navbar scroll effect ===== */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+</script>
+
+</body>
+</html>

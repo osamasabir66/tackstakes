@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TackStakes — Software House & Digital Marketing Agency</title>
+<meta name="description" content="TackStakes builds software products and runs growth marketing that turns budgets into revenue.">
+
+<!-- Google Fonts: Bricolage Grotesque (display) + Inter (body) + JetBrains Mono (code-style tags) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Bootstrap 5 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons (for small UI icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+/* =========================================================
+   DESIGN TOKENS — sirf yahan se rang/fonts badal saktay hain
+   ========================================================= */
+:root{
+  --bg:        #F6F3EC;   /* warm cream background */
+  --bg-soft:   #EFEAE0;   /* thora darker cream, alternate sections */
+  --card:      #FFFFFF;
+  --ink:       #15161B;   /* near-black text */
+  --ink-soft:  #5B5D66;   /* muted gray text */
+  --accent:    #1F9D55;   /* deep green - primary brand color */
+  --accent-2:  #C8FF4D;   /* lime - "growth/marketing" half */
+  --line:      rgba(21,22,27,0.12);
+
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{
+  font-family:var(--font-display);
+  font-weight:700;
+  letter-spacing:-0.02em;
+  margin:0;
+}
+p{color:var(--ink-soft); line-height:1.7;}
+a{text-decoration:none; color:inherit;}
+.container-x{
+  width:100%;
+  max-width:1240px;
+  margin:0 auto;
+  padding:0 24px;
+}
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:13px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:16px;
+}
+.eyebrow::before{
+  content:"//";
+  color:var(--ink-soft);
+}
+.btn-tack{
+  font-family:var(--font-mono);
+  font-size:14px;
+  font-weight:500;
+  padding:14px 26px;
+  border-radius:100px;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  white-space:nowrap;
+}
+.btn-tack-primary{
+  background:var(--ink);
+  color:var(--bg);
+  border:1px solid var(--ink);
+}
+.btn-tack-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 24px rgba(21,22,27,0.25);
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+}
+.btn-tack-outline{
+  background:transparent;
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+.btn-tack-outline:hover{
+  border-color:var(--ink);
+  transform:translateY(-3px);
+}
+
+/* ===================== NAVBAR ===================== */
+.navbar-tack{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:1000;
+  padding:20px 0;
+  transition:all .35s ease;
+}
+.navbar-tack.scrolled{
+  padding:12px 0;
+  background:rgba(246,243,236,0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:22px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.logo span{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--accent-2);
+  display:inline-block;
+  box-shadow:0 0 0 4px rgba(63,70,255,0.12);
+}
+.nav-links{
+  display:flex;
+  gap:36px;
+  list-style:none;
+  margin:0; padding:0;
+  font-size:15px;
+  font-weight:500;
+}
+.nav-links a{
+  position:relative;
+  padding-bottom:4px;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute; left:0; bottom:0;
+  width:0; height:1.5px;
+  background:var(--ink);
+  transition:width .3s ease;
+}
+.nav-links a:hover::after{width:100%;}
+
+/* ===================== HERO ===================== */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding-top:140px;
+  padding-bottom:60px;
+  position:relative;
+}
+.hero-headline{
+  font-size:clamp(2.6rem, 7vw, 6rem);
+  line-height:0.98;
+  font-weight:800;
+}
+.hero-headline .line{
+  overflow:hidden;
+  display:block;
+}
+.hero-headline .line span{
+  display:inline-block;
+  transform:translateY(110%);
+  animation:riseUp .9s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-headline .line:nth-child(1) span{animation-delay:.05s;}
+.hero-headline .line:nth-child(2) span{animation-delay:.18s;}
+.hero-headline .line:nth-child(3) span{animation-delay:.31s; color:var(--accent);}
+@keyframes riseUp{
+  to{transform:translateY(0);}
+}
+.cursor-blink{
+  display:inline-block;
+  width:.5ch;
+  background:var(--accent);
+  animation:blink 1s steps(1) infinite;
+  margin-left:4px;
+}
+@keyframes blink{50%{opacity:0;}}
+
+.hero-sub{
+  max-width:480px;
+  font-size:17px;
+  margin:26px 0 34px;
+}
+.hero-stats{
+  display:flex;
+  gap:40px;
+  margin-top:56px;
+  flex-wrap:wrap;
+}
+.hero-stats .stat-num{
+  font-family:var(--font-display);
+  font-size:34px;
+  font-weight:800;
+}
+.hero-stats .stat-label{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-soft);
+  text-transform:uppercase;
+}
+.hero-visual{
+  position:relative;
+  height:100%;
+  min-height:480px;
+}
+.hero-orbit{
+  position:absolute; top:50%; left:50%;
+  width:360px; height:360px; margin:-180px 0 0 -180px;
+  border:1.5px dashed var(--line);
+  border-radius:50%;
+  animation:spinOrbit 34s linear infinite;
+  z-index:0;
+}
+.hero-orbit::before{
+  content:"";
+  position:absolute; top:-6px; left:50%; margin-left:-6px;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--accent-2);
+  box-shadow:0 0 0 6px rgba(200,255,77,0.25);
+}
+.hero-orbit::after{
+  content:"";
+  position:absolute; bottom:8%; right:-6px;
+  width:7px; height:7px; border-radius:50%;
+  background:var(--accent);
+}
+@keyframes spinOrbit{to{transform:rotate(360deg);}}
+
+.hero-mockup{
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-52%) rotate(-4deg);
+  width:280px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:0 30px 60px rgba(21,22,27,0.14);
+  overflow:hidden;
+  z-index:1;
+  animation:floatY 8s ease-in-out infinite;
+}
+.hero-mockup .mockup-bar{
+  background:var(--bg-soft);
+  padding:10px 14px;
+  display:flex; gap:6px;
+  border-bottom:1px solid var(--line);
+}
+.hero-mockup .mockup-bar span{width:8px; height:8px; border-radius:50%; background:var(--line);}
+.hero-mockup .mockup-body{padding:18px;}
+.mockup-block{
+  height:64px; border-radius:12px;
+  background:linear-gradient(135deg, var(--accent), #6fd99a);
+  margin-bottom:14px;
+  position:relative;
+  overflow:hidden;
+}
+.mockup-block::after{
+  content:"";
+  position:absolute; inset:0;
+  background:repeating-linear-gradient(120deg, rgba(255,255,255,.12) 0 2px, transparent 2px 10px);
+}
+.mockup-line{height:7px; border-radius:4px; background:var(--bg-soft);}
+.mockup-line.w-70{width:70%;}
+.mockup-line.w-45{width:45%;}
+.mockup-line.w-90{width:90%;}
+.mockup-line + .mockup-line{margin-top:8px;}
+
+.hero-badge-live{
+  position:absolute; top:6%; left:2%;
+  background:var(--card); border:1px solid var(--line); border-radius:100px;
+  padding:9px 16px 9px 12px; display:flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:11.5px;
+  box-shadow:0 14px 30px rgba(21,22,27,0.10);
+  animation:floatY 5s ease-in-out infinite;
+  z-index:2;
+}
+.pulse-dot{width:8px; height:8px; border-radius:50%; background:#28C840; position:relative; flex-shrink:0;}
+.pulse-dot::after{
+  content:""; position:absolute; inset:-5px; border-radius:50%;
+  background:#28C840; opacity:.45; animation:pulseDot 1.8s ease-out infinite;
+}
+@keyframes pulseDot{0%{transform:scale(0.5); opacity:.5;} 100%{transform:scale(2.4); opacity:0;}}
+.hero-card{
+  position:absolute;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 20px 50px rgba(21,22,27,0.08);
+  z-index:2;
+}
+.hero-card-code{
+  top:2%; right:0;
+  width:280px;
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--ink-soft);
+  animation:floatY 6s ease-in-out infinite;
+}
+.hero-card-code .dot-row span{
+  width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px;
+}
+.hero-card-growth{
+  bottom:3%; left:-2%;
+  width:210px;
+  animation:floatY 7s ease-in-out infinite reverse;
+}
+.hero-card-growth .growth-num{
+  font-family:var(--font-display);
+  font-size:28px;
+  font-weight:800;
+  color:var(--accent);
+}
+@keyframes floatY{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-16px);}
+}
+.hero-blob{
+  position:absolute;
+  width:480px; height:480px;
+  border-radius:50%;
+  background:radial-gradient(circle, var(--accent-2) 0%, transparent 70%);
+  opacity:0.35;
+  filter:blur(40px);
+  top:10%; right:0;
+  z-index:-1;
+}
+
+/* ===================== MARQUEE RIBBON (signature element) ===================== */
+.ribbon-wrap{
+  transform:rotate(-1.6deg);
+  margin:0 -40px;
+}
+.ribbon{
+  background:var(--ink);
+  color:var(--bg);
+  padding:16px 0;
+  overflow:hidden;
+  white-space:nowrap;
+  border-top:1px solid var(--ink);
+  border-bottom:1px solid var(--ink);
+}
+.ribbon-track{
+  display:inline-flex;
+  animation:scrollRibbon 26s linear infinite;
+}
+.ribbon-track span{
+  font-family:var(--font-mono);
+  font-size:18px;
+  padding:0 28px;
+  display:inline-flex;
+  align-items:center;
+  gap:28px;
+}
+.ribbon-track span i{
+  color:var(--accent-2);
+  font-size:8px;
+}
+@keyframes scrollRibbon{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+/* ===================== SECTION GENERIC ===================== */
+.section{padding:120px 0;}
+.section-soft{background:var(--bg-soft);}
+.section-head{
+  max-width:600px;
+  margin-bottom:64px;
+}
+.section-head h2{
+  font-size:clamp(2rem, 4vw, 3rem);
+}
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+.reveal.in-view{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ===================== SERVICES ===================== */
+.service-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:36px;
+  height:100%;
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  position:relative;
+  overflow:hidden;
+}
+.service-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 24px 50px rgba(21,22,27,0.10);
+  border-color:transparent;
+}
+.service-tag{
+  font-family:var(--font-mono);
+  font-size:13px;
+  color:var(--ink-soft);
+  margin-bottom:24px;
+  display:block;
+}
+.service-card h3{font-size:22px; margin-bottom:12px;}
+.service-card p{font-size:14.5px; margin-bottom:0;}
+.service-icon{
+  width:50px;height:50px;
+  border-radius:14px;
+  background:var(--bg-soft);
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px;
+  margin-bottom:22px;
+  color:var(--accent);
+}
+
+/* ===================== PROCESS ===================== */
+.process-row{
+  display:flex;
+  border-top:1px solid var(--line);
+  padding:32px 0;
+  gap:32px;
+  align-items:flex-start;
+}
+.process-row:last-child{border-bottom:1px solid var(--line);}
+.process-num{
+  font-family:var(--font-mono);
+  font-size:14px;
+  color:var(--accent);
+  width:60px;
+  flex-shrink:0;
+  padding-top:4px;
+}
+.process-title{
+  font-size:24px;
+  width:260px;
+  flex-shrink:0;
+}
+.process-desc{font-size:15px; margin:0; padding-top:6px;}
+
+/* ===================== STATS ===================== */
+.stat-block{
+  text-align:center;
+  padding:30px 10px;
+}
+.stat-block .num{
+  font-family:var(--font-display);
+  font-size:clamp(2.4rem,5vw,3.4rem);
+  font-weight:800;
+  color:var(--ink);
+}
+.stat-block .num span{color:var(--accent);}
+.stat-block .label{
+  font-family:var(--font-mono);
+  font-size:13px;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin-top:6px;
+}
+
+/* ===================== TESTIMONIALS ===================== */
+.testi-track{
+  display:flex;
+  gap:24px;
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+.testi-viewport{overflow:hidden;}
+.testi-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:32px;
+  min-width:calc(33.333% - 16px);
+  flex-shrink:0;
+}
+.testi-card p{
+  font-size:16px;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+.testi-person{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.testi-avatar{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--bg-soft);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);
+  font-weight:700;
+  color:var(--accent);
+}
+.testi-name{font-size:14px; font-weight:600; color:var(--ink);}
+.testi-role{font-size:12.5px; color:var(--ink-soft);}
+.testi-nav-btn{
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);
+  background:var(--card);
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:all .25s ease;
+}
+.testi-nav-btn:hover{background:var(--ink); color:var(--bg);}
+
+/* ===================== CASE STUDIES ===================== */
+.case-card{
+  position:relative;
+  border-radius:22px;
+  overflow:hidden;
+  height:380px;
+  display:flex;
+  align-items:flex-end;
+  padding:28px;
+  background:linear-gradient(160deg, var(--ink), #2b2d3a);
+  isolation:isolate;
+}
+.case-card::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(0deg, rgba(0,0,0,.65), rgba(0,0,0,0));
+  z-index:0;
+}
+.case-card-inner{
+  position:relative; z-index:1;
+  color:#fff;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+.case-tag{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--accent-2);
+  text-transform:uppercase;
+}
+.case-card h4{color:#fff; font-size:22px; margin-top:6px;}
+.case-arrow{
+  width:44px;height:44px;border-radius:50%;
+  background:#fff; color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  transition:transform .3s ease;
+}
+.case-card:hover .case-arrow{transform:rotate(45deg);}
+
+/* ===================== ABOUT ===================== */
+.about-img-wrap{
+  border-radius:24px;
+  overflow:hidden;
+  position:relative;
+  aspect-ratio:4/3;
+  background:linear-gradient(135deg, var(--accent), #7a7fff);
+}
+.about-img-wrap .glyph{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono);
+  color:rgba(255,255,255,.85);
+  font-size:120px;
+  font-weight:600;
+}
+
+/* ===================== CTA BANNER ===================== */
+.cta-banner{
+  background:var(--ink);
+  border-radius:32px;
+  padding:80px 50px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.cta-banner h2{
+  color:var(--bg);
+  font-size:clamp(2rem,5vw,3.4rem);
+  max-width:700px;
+  margin:0 auto 30px;
+}
+.cta-banner .glow{
+  position:absolute;
+  width:400px;height:400px;
+  background:var(--accent-2);
+  filter:blur(120px);
+  opacity:.25;
+  top:-100px; left:50%;
+  transform:translateX(-50%);
+}
+
+/* ===================== FOOTER ===================== */
+footer{
+  background:var(--ink);
+  color:var(--bg);
+  padding:90px 0 30px;
+}
+footer h5{
+  font-family:var(--font-mono);
+  font-size:13px;
+  text-transform:uppercase;
+  color:var(--accent-2);
+  margin-bottom:18px;
+}
+footer p, footer a{color:rgba(246,243,236,0.65); font-size:14.5px;}
+footer a:hover{color:#fff;}
+.footer-logo{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:26px;
+  color:var(--bg);
+}
+.social-icon{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid rgba(246,243,236,0.2);
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-right:10px;
+  transition:all .25s ease;
+}
+.social-icon:hover{background:var(--accent-2); border-color:var(--accent-2); color:var(--ink);}
+.footer-bottom{
+  border-top:1px solid rgba(246,243,236,0.12);
+  margin-top:60px;
+  padding-top:24px;
+  font-size:13px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+  color:rgba(246,243,236,0.5);
+}
+
+@media (max-width: 991px){
+  .nav-links{display:none;}
+  .hero{padding-top:120px;}
+  .hero-visual{display:none;}
+  .testi-card{min-width:100%;}
+  .process-title{width:auto;}
+  .process-row{flex-direction:column; gap:10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+<nav class="navbar-tack" id="mainNav">
+  <div class="container-x nav-inner">
+    <a href="#" class="logo"><span></span>TackStakes</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="btn-tack btn-tack-primary d-none d-lg-inline-flex">Start a Project</a>
+    <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav">
+      <i class="bi bi-list" style="font-size:28px;"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile offcanvas menu -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNav" style="background:var(--bg); width:260px;">
+  <div class="offcanvas-header">
+    <span class="logo"><span></span>TackStakes</span>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column gap-3" style="font-family:var(--font-mono); font-size:15px;">
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="contact.html" class="btn-tack btn-tack-primary mt-3">Start a Project</a>
+  </div>
+</div>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="container-x">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="eyebrow">Software House &amp; Marketing Agency</div>
+        <h1 class="hero-headline">
+          <span class="line"><span>We Build</span></span>
+          <span class="line"><span>Products.</span></span>
+          <span class="line"><span>We Build Growth.<i class="cursor-blink">&nbsp;</i></span></span>
+        </h1>
+        <p class="hero-sub">
+          TackStakes is where code meets campaigns. We design and ship software, then
+          run the marketing that gets it in front of the right people — under one roof.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="contact.html" class="btn-tack btn-tack-primary">Start a Project <i class="bi bi-arrow-up-right"></i></a>
+          <a href="#work" class="btn-tack btn-tack-outline">See our work</a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">120+</div>
+            <div class="stat-label">Projects Shipped</div>
+          </div>
+          <div>
+            <div class="stat-num">60+</div>
+            <div class="stat-label">Brands Scaled</div>
+          </div>
+          <div>
+            <div class="stat-num">5+</div>
+            <div class="stat-label">Years Building</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="hero-visual d-none d-lg-block">
+          <div class="hero-orbit"></div>
+
+          <div class="hero-mockup">
+            <div class="mockup-bar">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-block"></div>
+              <div class="mockup-line w-90"></div>
+              <div class="mockup-line w-70"></div>
+              <div class="mockup-line w-45"></div>
+            </div>
+          </div>
+
+          <div class="hero-badge-live">
+            <span class="pulse-dot"></span> Available for new projects
+          </div>
+
+          <div class="hero-card hero-card-code">
+            <div class="dot-row mb-2">
+              <span style="background:#FF5F57;"></span>
+              <span style="background:#FEBC2E;"></span>
+              <span style="background:#28C840;"></span>
+            </div>
+            <div>const agency = {</div>
+            <div>&nbsp;&nbsp;builds: "software",</div>
+            <div>&nbsp;&nbsp;markets: "growth",</div>
+            <div>&nbsp;&nbsp;client: "you"</div>
+            <div>};</div>
+          </div>
+          <div class="hero-card hero-card-growth">
+            <div class="service-tag mb-1">Ad Spend Managed</div>
+            <div class="growth-num">$4.8M+</div>
+            <div style="font-size:12.5px; color:var(--ink-soft); margin-top:6px;">
+              <i class="bi bi-graph-up-arrow" style="color:var(--accent-2);"></i> +38% avg. ROAS
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Signature marquee ribbon -->
+<div class="ribbon-wrap">
+  <div class="ribbon">
+    <div class="ribbon-track" id="ribbonTrack">
+      <span>BUILD <i class="bi bi-circle-fill"></i></span>
+      <span>SHIP <i class="bi bi-circle-fill"></i></span>
+      <span>MARKET <i class="bi bi-circle-fill"></i></span>
+      <span>SCALE <i class="bi bi-circle-fill"></i></span>
+      <span>&lt;/&gt; CODE <i class="bi bi-circle-fill"></i></span>
+      <span>GROW <i class="bi bi-circle-fill"></i></span>
+      <span>BUILD <i class="bi bi-circle-fill"></i></span>
+      <span>SHIP <i class="bi bi-circle-fill"></i></span>
+      <span>MARKET <i class="bi bi-circle-fill"></i></span>
+      <span>SCALE <i class="bi bi-circle-fill"></i></span>
+      <span>&lt;/&gt; CODE <i class="bi bi-circle-fill"></i></span>
+      <span>GROW <i class="bi bi-circle-fill"></i></span>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     TRUSTED BY — placeholder wordmarks, swap with your real
+     client logos (see comment in chat / README below)
+========================================================= -->
+<section class="py-5">
+  <div class="container-x">
+    <p class="text-center reveal" style="font-family:var(--font-mono); font-size:12.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); margin-bottom:28px;">
+      Trusted by teams building with TackStakes
+    </p>
+    <div class="d-flex flex-wrap justify-content-center align-items-center gap-5 reveal" style="opacity:.55;">
+      <span style="font-family:var(--font-display); font-weight:800; font-size:22px;">Loopline</span>
+      <span style="font-family:var(--font-display); font-weight:800; font-size:22px;">Northbridge</span>
+      <span style="font-family:var(--font-display); font-weight:800; font-size:22px;">Vantix</span>
+      <span style="font-family:var(--font-display); font-weight:800; font-size:22px;">Acme Fleet</span>
+      <span style="font-family:var(--font-display); font-weight:800; font-size:22px;">Corex</span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+<section class="section" id="services">
+  <div class="container-x">
+    <div class="section-head reveal">
+      <div class="eyebrow">What we do</div>
+      <h2>Two teams. One roof. <br>Your product, end to end.</h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="service-card">
+          <span class="service-tag">01</span>
+          <div class="service-icon"><i class="bi bi-vector-pen"></i></div>
+          <h3>Logo Design</h3>
+          <p>Distinct, memorable marks built to work everywhere — from a favicon to a billboard.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="service-card">
+          <span class="service-tag">02</span>
+          <div class="service-icon"><i class="bi bi-window-stack"></i></div>
+          <h3>Custom Website</h3>
+          <p>Fast, responsive websites designed and coded from scratch around your brand and goals.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="service-card">
+          <span class="service-tag">03</span>
+          <div class="service-icon"><i class="bi bi-cart3"></i></div>
+          <h3>E-Commerce</h3>
+          <p>Online stores with smooth checkout, product management, and payment integrations built in.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="service-card">
+          <span class="service-tag">04</span>
+          <div class="service-icon"><i class="bi bi-search"></i></div>
+          <h3>SEO</h3>
+          <p>On-page and off-page optimization that moves your site up the search results that matter.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="service-card">
+          <span class="service-tag">05</span>
+          <div class="service-icon"><i class="bi bi-megaphone"></i></div>
+          <h3>SMM</h3>
+          <p>Social media strategy, content, and management that keeps your brand active and engaging.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="service-card">
+          <span class="service-tag">06</span>
+          <div class="service-icon"><i class="bi bi-film"></i></div>
+          <h3>Animation</h3>
+          <p>Explainer videos and motion graphics that simplify your product into something people share.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="service-card">
+          <span class="service-tag">07</span>
+          <div class="service-icon"><i class="bi bi-code-slash"></i></div>
+          <h3>Web/App Solution</h3>
+          <p>Full web and mobile app development — from planning and design to build and deployment.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 reveal">
+        <div class="service-card">
+          <span class="service-tag">08</span>
+          <div class="service-icon"><i class="bi bi-palette"></i></div>
+          <h3>Branding</h3>
+          <p>Complete identity systems — color, type, voice, and guidelines — so every touchpoint feels consistent.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PROCESS
+========================================================= -->
+<section class="section section-soft">
+  <div class="container-x">
+    <div class="section-head reveal">
+      <div class="eyebrow">How we work</div>
+      <h2>From idea to shipped <br>to scaled.</h2>
+    </div>
+
+    <div class="reveal">
+      <div class="process-row">
+        <div class="process-num">// 01</div>
+        <div class="process-title">Discover</div>
+        <p class="process-desc">We dig into your goals, your users, and your market before a single line of code or copy gets written.</p>
+      </div>
+      <div class="process-row">
+        <div class="process-num">// 02</div>
+        <div class="process-title">Design</div>
+        <p class="process-desc">Wireframes, prototypes, and brand systems that give your idea a shape people instantly understand.</p>
+      </div>
+      <div class="process-row">
+        <div class="process-num">// 03</div>
+        <div class="process-title">Build &amp; Launch</div>
+        <p class="process-desc">Development sprints and campaign setup run in parallel, so your product launches with demand already waiting.</p>
+      </div>
+      <div class="process-row">
+        <div class="process-num">// 04</div>
+        <div class="process-title">Scale</div>
+        <p class="process-desc">We measure what works, cut what doesn't, and keep iterating on both the product and the marketing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     STATS
+========================================================= -->
+<section class="section pt-0">
+  <div class="container-x">
+    <div class="row reveal">
+      <div class="col-6 col-lg-3 stat-block">
+        <div class="num" data-count="120">0<span>+</span></div>
+        <div class="label">Projects Delivered</div>
+      </div>
+      <div class="col-6 col-lg-3 stat-block">
+        <div class="num" data-count="60">0<span>+</span></div>
+        <div class="label">Brands Scaled</div>
+      </div>
+      <div class="col-6 col-lg-3 stat-block">
+        <div class="num" data-count="98">0<span>%</span></div>
+        <div class="label">Client Retention</div>
+      </div>
+      <div class="col-6 col-lg-3 stat-block">
+        <div class="num" data-count="5">0<span>+</span></div>
+        <div class="label">Years Building</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     TESTIMONIALS
+========================================================= -->
+<section class="section section-soft" id="testimonials">
+  <div class="container-x">
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5 reveal">
+      <div class="section-head mb-0">
+        <div class="eyebrow">Client words</div>
+        <h2>Don't just take <br>our word for it.</h2>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="testi-nav-btn" id="testiPrev"><i class="bi bi-arrow-left"></i></button>
+        <button class="testi-nav-btn" id="testiNext"><i class="bi bi-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="testi-viewport reveal">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-card">
+          <p>"TackStakes shipped our MVP in eight weeks and had a paid campaign running the week we launched. We were getting signups before our competitors finished their wireframes."</p>
+          <div class="testi-person">
+            <div class="testi-avatar">A</div>
+            <div><div class="testi-name">Ayesha Raza</div><div class="testi-role">Founder, fintech startup</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <p>"We came in for ads and ended up rebuilding our entire booking system with them. Having one team own both made every handoff disappear."</p>
+          <div class="testi-person">
+            <div class="testi-avatar">H</div>
+            <div><div class="testi-name">Hassan Tariq</div><div class="testi-role">Owner, travel platform</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <p>"Our ROAS doubled in the first quarter, but what stuck with us was how clearly they explained why something was or wasn't working."</p>
+          <div class="testi-person">
+            <div class="testi-avatar">M</div>
+            <div><div class="testi-name">Mahnoor Sheikh</div><div class="testi-role">Marketing Lead, D2C brand</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <p>"They rebuilt our dashboard from scratch and it just works now. No more weekly bug reports, no more guessing what broke overnight."</p>
+          <div class="testi-person">
+            <div class="testi-avatar">B</div>
+            <div><div class="testi-name">Bilal Ahmed</div><div class="testi-role">CTO, logistics company</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <p>"We tried three agencies before TackStakes. They were the first ones who could explain our own product back to us better than we could."</p>
+          <div class="testi-person">
+            <div class="testi-avatar">S</div>
+            <div><div class="testi-name">Sana Khalid</div><div class="testi-role">Co-founder, skincare brand</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CASE STUDIES / WORK
+========================================================= -->
+<section class="section" id="work">
+  <div class="container-x">
+    <div class="section-head reveal">
+      <div class="eyebrow">Selected work</div>
+      <h2>Built by us. <br>Trusted by them.</h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-6 reveal">
+        <a href="#" class="case-card" style="background-image:linear-gradient(160deg, rgba(21,22,27,.55), rgba(21,22,27,.75)), url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70'); background-size:cover; background-position:center;">
+          <div class="case-card-inner">
+            <div>
+              <div class="case-tag">Software · Fintech</div>
+              <h4>Loopline — Payments App</h4>
+            </div>
+            <div class="case-arrow"><i class="bi bi-arrow-up-right"></i></div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 reveal">
+        <a href="#" class="case-card" style="background-image:linear-gradient(160deg, rgba(21,22,27,.55), rgba(21,22,27,.75)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70'); background-size:cover; background-position:center;">
+          <div class="case-card-inner">
+            <div>
+              <div class="case-tag">Marketing · D2C</div>
+              <h4>Northbridge — Growth Campaign</h4>
+            </div>
+            <div class="case-arrow"><i class="bi bi-arrow-up-right"></i></div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 reveal">
+        <a href="#" class="case-card" style="background-image:linear-gradient(160deg, rgba(21,22,27,.55), rgba(21,22,27,.75)), url('https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70'); background-size:cover; background-position:center;">
+          <div class="case-card-inner">
+            <div>
+              <div class="case-tag">Branding · Wellness</div>
+              <h4>Vantix — Identity System</h4>
+            </div>
+            <div class="case-arrow"><i class="bi bi-arrow-up-right"></i></div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 reveal">
+        <a href="#" class="case-card" style="background-image:linear-gradient(160deg, rgba(21,22,27,.55), rgba(21,22,27,.75)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70'); background-size:cover; background-position:center;">
+          <div class="case-card-inner">
+            <div>
+              <div class="case-tag">Software · Logistics</div>
+              <h4>Acme Fleet — Ops Dashboard</h4>
+            </div>
+            <div class="case-arrow"><i class="bi bi-arrow-up-right"></i></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+<section class="section section-soft" id="about">
+  <div class="container-x">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <div class="about-img-wrap" style="background:none;">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70" alt="TackStakes team working" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="eyebrow">About TackStakes</div>
+        <h2 class="mb-4">Where code meets campaigns.</h2>
+        <p>TackStakes started with a simple frustration: software teams who didn't understand marketing, and marketing teams who didn't understand the product they were promoting.</p>
+        <p>So we built a team that does both — engineers and marketers in the same room, working off the same roadmap, accountable to the same numbers.</p>
+        <div class="row mt-4">
+          <div class="col-6 mb-4">
+            <div class="stat-num" style="font-size:30px;">1,000+</div>
+            <div class="stat-label" style="font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); text-transform:uppercase;">Features Shipped</div>
+          </div>
+          <div class="col-6 mb-4">
+            <div class="stat-num" style="font-size:30px;">$4.8M+</div>
+            <div class="stat-label" style="font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); text-transform:uppercase;">Ad Spend Managed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CTA BANNER
+========================================================= -->
+<section class="section">
+  <div class="container-x">
+    <div class="cta-banner reveal">
+      <div class="glow"></div>
+      <div class="eyebrow" style="color:var(--accent-2);">Let's talk</div>
+      <h2>Got an idea? Let's build it — <br>then make sure people see it.</h2>
+      <a href="contact.html" class="btn-tack btn-tack-primary" style="background:var(--accent-2); color:var(--ink); border-color:var(--accent-2);">
+        Book a Free Call <i class="bi bi-arrow-up-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer id="contact">
+  <div class="container-x">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-logo mb-3"><span style="color:var(--accent-2);">/</span>TackStakes</div>
+        <p>Software house and digital marketing agency helping brands build, launch, and grow.</p>
+        <div class="mt-4">
+          <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Company</h5>
+        <div class="d-flex flex-column gap-2">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#work">Work</a>
+          <a href="#testimonials">Reviews</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Services</h5>
+        <div class="d-flex flex-column gap-2">
+          <a href="#">Software Dev</a>
+          <a href="#">Marketing</a>
+          <a href="#">Branding</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <h5>Get in touch</h5>
+        <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>1580 N Logan St Ste 660, PMB 897072, Denver, Colorado 80203-1994</p>
+        <p class="mb-2"><i class="bi bi-envelope me-2"></i><a href="mailto:contact@tackstakes.com">contact@tackstakes.com</a></p>
+        <p class="mb-0"><i class="bi bi-telephone me-2"></i><a href="tel:+92000000000">+92 300 000 0000</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 TackStakes. All rights reserved.</div>
+      <div>Built by TackStakes — software &amp; marketing under one roof.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ===== Navbar background on scroll ===== */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ===== Scroll reveal animation ===== */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObserver.observe(el));
+
+/* ===== Animated number counters ===== */
+const counters = document.querySelectorAll('.num[data-count]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      const suffixEl = el.querySelector('span');
+      let current = 0;
+      const duration = 1400;
+      const stepTime = 16;
+      const steps = duration / stepTime;
+      const increment = target / steps;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        el.firstChild.textContent = Math.floor(current);
+      }, stepTime);
+
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(el => counterObserver.observe(el));
+
+/* ===== Testimonial slider ===== */
+const track = document.getElementById('testiTrack');
+const cards = track.querySelectorAll('.testi-card');
+let cardsPerView = window.innerWidth < 992 ? 1 : 3;
+let testiIndex = 0;
+
+function updateTestiSlider(){
+  cardsPerView = window.innerWidth < 992 ? 1 : 3;
+  const cardWidth = track.children[0].getBoundingClientRect().width + 24; // gap
+  track.style.transform = `translateX(-${testiIndex * cardWidth}px)`;
+}
+
+document.getElementById('testiNext').addEventListener('click', () => {
+  const maxIndex = cards.length - cardsPerView;
+  testiIndex = testiIndex >= maxIndex ? 0 : testiIndex + 1;
+  updateTestiSlider();
+});
+document.getElementById('testiPrev').addEventListener('click', () => {
+  const maxIndex = cards.length - cardsPerView;
+  testiIndex = testiIndex <= 0 ? maxIndex : testiIndex - 1;
+  updateTestiSlider();
+});
+window.addEventListener('resize', updateTestiSlider);
+
+/* Auto-rotate testimonials every 5s */
+setInterval(() => {
+  document.getElementById('testiNext').click();
+}, 5000);
+</script>
+
+</body>
+</html>
