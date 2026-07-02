@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TackStakes — Software House & Digital Marketing Agency</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="description" content="TackStakes builds software products and runs growth marketing that turns budgets into revenue.">
 
 <!-- Google Fonts: Bricolage Grotesque (display) + Inter (body) + JetBrains Mono (code-style tags) -->
@@ -567,6 +568,86 @@ a{text-decoration:none; color:inherit;}
 }
 .case-card:hover .case-arrow{transform:rotate(45deg);}
 
+/* ===== Work horizontal slider ===== */
+.work-viewport{overflow:hidden;}
+.work-track{
+  display:flex;
+  gap:24px;
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+.work-track .case-card{
+  min-width:calc(50% - 12px);
+  width:calc(50% - 12px);
+  flex-shrink:0;
+}
+.work-nav-btn{
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);
+  background:var(--card);
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:all .25s ease;
+}
+.work-nav-btn:hover{background:var(--ink); color:var(--bg);}
+.work-nav-btn:disabled{opacity:.35; cursor:not-allowed;}
+.work-nav-btn:disabled:hover{background:var(--card); color:var(--ink);}
+
+/* ===== Work slide dots ===== */
+.work-dots{
+  display:flex; justify-content:center; align-items:center;
+  gap:10px; margin-top:28px;
+}
+.work-dot{
+  width:9px; height:9px; border-radius:50%;
+  background:var(--line);
+  border:none; padding:0; cursor:pointer;
+  transition:all .25s ease;
+}
+.work-dot.active{
+  background:var(--ink);
+  width:26px; border-radius:100px;
+}
+
+/* ===== Work filter tabs ===== */
+.work-tabs{
+  display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px;
+}
+.work-tab{
+  font-family:var(--font-mono); font-size:13px; padding:10px 18px; border-radius:100px;
+  border:1px solid var(--line); background:var(--card); color:var(--ink-soft);
+  cursor:pointer; transition:all .25s ease; white-space:nowrap;
+}
+.work-tab:hover{border-color:var(--ink); color:var(--ink);}
+.work-tab.active{background:var(--ink); color:var(--bg); border-color:var(--ink);}
+.case-card{cursor:pointer; border:none;}
+
+@media (max-width: 767px){
+  .work-track .case-card{min-width:100%; width:100%;}
+}
+
+/* ===== Work detail modal ===== */
+#workModal .modal-dialog{max-width:800px;}
+#workModal .modal-content{
+  background:var(--bg); border:1px solid var(--line); border-radius:24px; overflow:hidden;
+}
+#workModal .modal-header{border-bottom:1px solid var(--line); padding:24px 30px;}
+#workModal .modal-title{font-family:var(--font-display); font-weight:800; font-size:24px;}
+#workModal .modal-body{padding:30px; max-height:75vh; overflow-y:auto;}
+.work-modal-role{
+  font-family:var(--font-mono); font-size:12.5px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;
+}
+.work-modal-desc{font-size:15px; color:var(--ink); line-height:1.75; margin:18px 0 24px;}
+.skill-chip{
+  display:inline-block; font-family:var(--font-mono); font-size:12.5px;
+  background:var(--bg-soft); border:1px solid var(--line); color:var(--ink);
+  padding:8px 14px; border-radius:100px; margin:0 8px 8px 0;
+}
+.work-modal-gallery img{
+  width:100%; border-radius:16px; margin-bottom:14px; border:1px solid var(--line); display:block;
+}
+.work-modal-hero{
+  width:100%; border-radius:16px; margin-bottom:20px; border:1px solid var(--line); display:block;
+}
+
 /* ===================== ABOUT ===================== */
 .about-img-wrap{
   border-radius:24px;
@@ -1025,59 +1106,52 @@ footer a:hover{color:#fff;}
 ========================================================= -->
 <section class="section" id="work">
   <div class="container-x">
-    <div class="section-head reveal">
-      <div class="eyebrow">Selected work</div>
-      <h2>Built by us. <br>Trusted by them.</h2>
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4 reveal">
+      <div class="section-head mb-0">
+        <div class="eyebrow">Selected work</div>
+        <h2>Built by us. <br>Trusted by them.</h2>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="work-nav-btn" id="workPrev"><i class="bi bi-arrow-left"></i></button>
+        <button class="work-nav-btn" id="workNext"><i class="bi bi-arrow-right"></i></button>
+      </div>
     </div>
 
-    <div class="row g-4">
-      <div class="col-md-6 reveal">
-        <a href="#" class="case-card" style="background-image:linear-gradient(160deg, rgba(21,22,27,.55), rgba(21,22,27,.75)), url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70'); background-size:cover; background-position:center;">
-          <div class="case-card-inner">
-            <div>
-              <div class="case-tag">Software · Fintech</div>
-              <h4>Loopline — Payments App</h4>
-            </div>
-            <div class="case-arrow"><i class="bi bi-arrow-up-right"></i></div>
-          </div>
-        </a>
+    <!-- Filter tabs -->
+    <div class="work-tabs" id="workTabs"></div>
+
+    <!-- Cards render here as one horizontal slide -->
+    <div class="work-viewport">
+      <div class="work-track" id="workGrid"></div>
+    </div>
+    <div class="work-dots" id="workDots"></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     WORK DETAIL MODAL
+========================================================= -->
+<div class="modal fade" id="workModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="workModalTitle">Project title</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="col-md-6 reveal">
-        <a href="#" class="case-card" style="background-image:linear-gradient(160deg, rgba(21,22,27,.55), rgba(21,22,27,.75)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70'); background-size:cover; background-position:center;">
-          <div class="case-card-inner">
-            <div>
-              <div class="case-tag">Marketing · D2C</div>
-              <h4>Northbridge — Growth Campaign</h4>
-            </div>
-            <div class="case-arrow"><i class="bi bi-arrow-up-right"></i></div>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-6 reveal">
-        <a href="#" class="case-card" style="background-image:linear-gradient(160deg, rgba(21,22,27,.55), rgba(21,22,27,.75)), url('https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70'); background-size:cover; background-position:center;">
-          <div class="case-card-inner">
-            <div>
-              <div class="case-tag">Branding · Wellness</div>
-              <h4>Vantix — Identity System</h4>
-            </div>
-            <div class="case-arrow"><i class="bi bi-arrow-up-right"></i></div>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-6 reveal">
-        <a href="#" class="case-card" style="background-image:linear-gradient(160deg, rgba(21,22,27,.55), rgba(21,22,27,.75)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70'); background-size:cover; background-position:center;">
-          <div class="case-card-inner">
-            <div>
-              <div class="case-tag">Software · Logistics</div>
-              <h4>Acme Fleet — Ops Dashboard</h4>
-            </div>
-            <div class="case-arrow"><i class="bi bi-arrow-up-right"></i></div>
-          </div>
-        </a>
+      <div class="modal-body">
+        <div class="work-modal-role" id="workModalRole">Role</div>
+        <div class="eyebrow" id="workModalCategory" style="margin-bottom:0;">Category</div>
+        <p class="work-modal-desc" id="workModalDesc">Description</p>
+
+        <div style="font-family:var(--font-mono); font-size:12px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;">Skills &amp; deliverables</div>
+        <div id="workModalSkills" class="mb-4"></div>
+
+        <img id="workModalHero" class="work-modal-hero" src="" alt="">
+        <div id="workModalGallery" class="work-modal-gallery"></div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- =========================================================
      ABOUT
@@ -1254,6 +1328,604 @@ window.addEventListener('resize', updateTestiSlider);
 setInterval(() => {
   document.getElementById('testiNext').click();
 }, 5000);
+
+/* =========================================================
+   WORK / CASE STUDIES — filter tabs + click-to-view popup
+   Add/edit projects here. "category" must match one of the
+   keys below so the filter tabs work correctly.
+========================================================= */
+const workData = [
+  {
+    id: "loopline-app",
+    title: "Loopline — Payments App",
+    category: "webapp",
+    categoryLabel: "Web/App Solution",
+    role: "Product Designer & Developer",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+    description: "Designed and developed a cross-platform payments app for Loopline, from onboarding flow to transaction dashboard. Built a custom backend, integrated secure payment rails, and shipped a polished mobile experience that held up under real transaction volume from day one.",
+    skills: ["Mobile App", "Backend API", "Payment Integration", "UI/UX Design", "QA Testing"],
+    gallery: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "northbridge-seo",
+    title: "Northbridge — SEO Growth",
+    category: "seo",
+    categoryLabel: "SEO",
+    role: "SEO Strategist",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+    description: "Ran a full technical and content SEO overhaul for Northbridge, fixing crawl issues, restructuring on-page content, and building a targeted link profile. Organic traffic and keyword rankings climbed steadily over the following two quarters.",
+    skills: ["Technical SEO", "Keyword Research", "Content Strategy", "Link Building", "Reporting"],
+    gallery: [
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "vantix-branding",
+    title: "Vantix — Identity System",
+    category: "branding",
+    categoryLabel: "Branding",
+    role: "Brand Strategist & Designer",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+    description: "Built a complete brand identity system for Vantix — logo, color palette, typography, and a detailed guideline document. Extended the system into packaging and a pitch deck template so the brand stayed consistent across every touchpoint.",
+    skills: ["Logo Design", "Brand Guidelines", "Typography", "Packaging", "Pitch Deck"],
+    gallery: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "acmefleet-website",
+    title: "Acme Fleet — Ops Dashboard",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Full-Stack Developer",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+    description: "Rebuilt Acme Fleet's internal operations dashboard as a fast, responsive web app. Replaced a slow legacy system with a clean interface for live fleet tracking, scheduling, and reporting — cutting daily admin time significantly.",
+    skills: ["Custom Website", "Admin Dashboard", "API Integration", "Responsive Design"],
+    gallery: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "corex-ecommerce",
+    title: "Corex — E-Commerce Store",
+    category: "ecommerce",
+    categoryLabel: "E-Commerce",
+    role: "E-Commerce Developer",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+    description: "Launched a full online store for Corex with custom checkout, inventory management, and multiple payment gateways. Optimized product pages for conversion and set up analytics so the team could track performance from week one.",
+    skills: ["E-Commerce", "Checkout Flow", "Payment Gateways", "Inventory System"],
+    gallery: [
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "nova-logo",
+    title: "Nova Roastery — Logo & Identity",
+    category: "logo",
+    categoryLabel: "Logo Design",
+    role: "Logo Designer",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+    description: "Designed a distinct, versatile logo for Nova Roastery that works from a coffee cup sleeve to a storefront sign. Explored six directions before landing on a mark that felt both premium and approachable.",
+    skills: ["Logo Design", "Concept Exploration", "Color Palette", "Favicon & Social Kit"],
+    gallery: [
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "pulse-smm",
+    title: "Pulse Wellness — Social Campaign",
+    category: "smm",
+    categoryLabel: "SMM",
+    role: "Social Media Manager",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+    description: "Planned and ran a three-month social media campaign for Pulse Wellness across Instagram and TikTok — content calendar, community management, and a small paid boost. Engagement and follower growth both accelerated within the first month.",
+    skills: ["Content Calendar", "Community Management", "Paid Social", "Analytics Reporting"],
+    gallery: [
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "orbit-animation",
+    title: "Orbit — Product Explainer Video",
+    category: "animation",
+    categoryLabel: "Animation",
+    role: "Motion Designer",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+    description: "Wrote, storyboarded, and animated a 40-second explainer video for Orbit's product launch. Distilled a fairly technical product into a simple visual story that the sales team now uses on every call.",
+    skills: ["Script Writing", "Storyboarding", "Motion Graphics", "Voiceover & Sound"],
+    gallery: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "bloom-website",
+    title: "Bloom Interiors — Portfolio Site",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+    description: "Built a fast, image-forward portfolio website for Bloom Interiors to showcase past projects. Focused on large, well-optimized galleries and a simple inquiry form that made it easy for potential clients to reach out.",
+    skills: ["Custom Website", "Gallery Layout", "Contact Forms", "Performance Optimization"],
+    gallery: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "fernwood-ecommerce",
+    title: "Fernwood — Online Store",
+    category: "ecommerce",
+    categoryLabel: "E-Commerce",
+    role: "E-Commerce Developer",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+    description: "Migrated Fernwood's storefront to a faster, more flexible e-commerce platform. Rebuilt product filtering, streamlined the checkout to fewer steps, and set up abandoned-cart recovery to help lift conversion rates.",
+    skills: ["E-Commerce", "Product Filtering", "Checkout Optimization", "Cart Recovery"],
+    gallery: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "circuit-logo",
+    title: "Circuit Labs — Logo Mark",
+    category: "logo",
+    categoryLabel: "Logo Design",
+    role: "Logo Designer",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+    description: "Created a sharp, technical logomark for Circuit Labs that reads clearly at icon size while still feeling distinct on a full letterhead. Delivered a tight set of usage guidelines alongside the final files.",
+    skills: ["Logo Design", "Icon System", "Usage Guidelines", "File Formats"],
+    gallery: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "greenleaf-seo",
+    title: "GreenLeaf — Local SEO",
+    category: "seo",
+    categoryLabel: "SEO",
+    role: "SEO Specialist",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+    description: "Focused entirely on local search for GreenLeaf — optimizing their Google Business profile, cleaning up citations, and building location-specific landing pages. Local map-pack visibility improved within weeks.",
+    skills: ["Local SEO", "Google Business Profile", "Citation Cleanup", "Landing Pages"],
+    gallery: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "halo-smm",
+    title: "Halo Fitness — Content Strategy",
+    category: "smm",
+    categoryLabel: "SMM",
+    role: "Social Media Strategist",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+    description: "Designed a content strategy and posting cadence for Halo Fitness across Instagram and YouTube Shorts. Introduced a repeatable content framework the in-house team still uses today.",
+    skills: ["Content Strategy", "Content Calendar", "Short-Form Video", "Analytics Reporting"],
+    gallery: [
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "nimbus-animation",
+    title: "Nimbus — Onboarding Animation",
+    category: "animation",
+    categoryLabel: "Animation",
+    role: "Motion Designer",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+    description: "Produced a short animated sequence for Nimbus's in-app onboarding, guiding new users through core features in under 20 seconds. Reduced drop-off during first-time setup noticeably.",
+    skills: ["Motion Graphics", "UI Animation", "Storyboarding", "Sound Design"],
+    gallery: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "trackpoint-webapp",
+    title: "TrackPoint — Field Service App",
+    category: "webapp",
+    categoryLabel: "Web/App Solution",
+    role: "Full-Stack Developer",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+    description: "Built a field-service mobile app for TrackPoint's technicians — job scheduling, offline mode, and photo-based job reports that sync automatically once back online.",
+    skills: ["Mobile App", "Offline Sync", "Scheduling System", "Backend API"],
+    gallery: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "alta-branding",
+    title: "Alta Coffee — Brand Refresh",
+    category: "branding",
+    categoryLabel: "Branding",
+    role: "Brand Designer",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+    description: "Refreshed Alta Coffee's aging brand identity — new mark, warmer color palette, and packaging that stood out on crowded shelves without losing the loyal customers who already knew the name.",
+    skills: ["Brand Refresh", "Packaging Design", "Color Palette", "Brand Guidelines"],
+    gallery: [
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "solstice-website",
+    title: "Solstice Law — Firm Website",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+    description: "Rebuilt Solstice Law's outdated site into a clean, trust-building website with clear practice-area pages and a simple consultation booking flow that cut down back-and-forth emails.",
+    skills: ["Custom Website", "Booking Flow", "Content Structure", "Mobile Responsive"],
+    gallery: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "petal-website",
+    title: "Petal & Co — Boutique Website",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+    description: "Designed a light, editorial-style website for Petal & Co's boutique, built around large product photography and a lookbook-style browsing experience.",
+    skills: ["Custom Website", "Editorial Layout", "Image Optimization", "CMS Setup"],
+    gallery: [
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "anchor-ecommerce",
+    title: "Anchor Supply — Store Relaunch",
+    category: "ecommerce",
+    categoryLabel: "E-Commerce",
+    role: "E-Commerce Developer",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+    description: "Relaunched Anchor Supply's store on a faster platform, cleaned up the product catalog, and rebuilt shipping rules so checkout finally matched their real fulfillment process.",
+    skills: ["E-Commerce", "Catalog Cleanup", "Shipping Rules", "Platform Migration"],
+    gallery: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "wildflower-ecommerce",
+    title: "Wildflower Goods — Shopify Build",
+    category: "ecommerce",
+    categoryLabel: "E-Commerce",
+    role: "E-Commerce Developer",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+    description: "Built Wildflower Goods a custom Shopify theme from scratch, with bundle pricing, a wishlist feature, and a subscription option for repeat customers.",
+    skills: ["Shopify", "Custom Theme", "Subscriptions", "Bundle Pricing"],
+    gallery: [
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "ridgeline-logo",
+    title: "Ridgeline Outdoors — Logo Design",
+    category: "logo",
+    categoryLabel: "Logo Design",
+    role: "Logo Designer",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+    description: "Designed a rugged, outdoor-ready logomark for Ridgeline that holds up on embroidered gear as well as it does on a digital storefront.",
+    skills: ["Logo Design", "Merch-Ready Files", "Color Palette", "Concept Exploration"],
+    gallery: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "kindred-logo",
+    title: "Kindred Studio — Brand Mark",
+    category: "logo",
+    categoryLabel: "Logo Design",
+    role: "Logo Designer",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+    description: "Created a soft, hand-drawn-feeling mark for Kindred Studio, paired with a simple secondary monogram for use on packaging and social avatars.",
+    skills: ["Logo Design", "Monogram", "Favicon & Social Kit", "Typography"],
+    gallery: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "harbor-seo",
+    title: "Harbor Realty — SEO Overhaul",
+    category: "seo",
+    categoryLabel: "SEO",
+    role: "SEO Strategist",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+    description: "Rebuilt Harbor Realty's site architecture around neighborhood and listing pages, fixing duplicate-content issues that had been holding back rankings for years.",
+    skills: ["Technical SEO", "Site Architecture", "On-Page Optimization", "Reporting"],
+    gallery: [
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "craft-seo",
+    title: "Craft & Co — Content SEO",
+    category: "seo",
+    categoryLabel: "SEO",
+    role: "SEO Specialist",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+    description: "Built a content-led SEO plan for Craft & Co — keyword-mapped blog calendar, on-page refreshes for older posts, and internal linking that spread authority across the site.",
+    skills: ["Content Strategy", "Keyword Mapping", "Internal Linking", "Blog Optimization"],
+    gallery: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "juniper-smm",
+    title: "Juniper Cafe — Instagram Growth",
+    category: "smm",
+    categoryLabel: "SMM",
+    role: "Social Media Manager",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+    description: "Grew Juniper Cafe's Instagram from a quiet local page into an active community hub — consistent posting, reels, and quick replies that turned followers into regular customers.",
+    skills: ["Content Calendar", "Reels", "Community Management", "Local Engagement"],
+    gallery: [
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "trailmix-smm",
+    title: "Trail Mix Co — TikTok Strategy",
+    category: "smm",
+    categoryLabel: "SMM",
+    role: "Social Media Strategist",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+    description: "Launched Trail Mix Co's TikTok presence from zero — hook-driven short-form content and a consistent posting rhythm that built an audience within the first six weeks.",
+    skills: ["Short-Form Video", "Content Strategy", "Trend Research", "Analytics Reporting"],
+    gallery: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "beacon-animation",
+    title: "Beacon App — Launch Video",
+    category: "animation",
+    categoryLabel: "Animation",
+    role: "Motion Designer",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+    description: "Animated a 30-second launch video for Beacon's app store listing and homepage, distilling the core feature set into a punchy, share-ready clip.",
+    skills: ["Motion Graphics", "Script Writing", "App Store Video", "Sound Design"],
+    gallery: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "flux-animation",
+    title: "Flux Robotics — Product Demo",
+    category: "animation",
+    categoryLabel: "Animation",
+    role: "Motion Designer",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+    description: "Built a technical product-demo animation for Flux Robotics that broke down a complex mechanical process into something a non-engineer investor could follow in under a minute.",
+    skills: ["3D-Style Motion", "Storyboarding", "Technical Simplification", "Voiceover"],
+    gallery: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "havenly-webapp",
+    title: "Havenly — Booking Platform",
+    category: "webapp",
+    categoryLabel: "Web/App Solution",
+    role: "Full-Stack Developer",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+    description: "Built a booking and scheduling web app for Havenly with real-time availability, automated reminders, and a simple admin panel for managing staff calendars.",
+    skills: ["Web App", "Real-Time Scheduling", "Admin Panel", "Automated Notifications"],
+    gallery: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "cursive-webapp",
+    title: "Cursive — CRM Tool",
+    category: "webapp",
+    categoryLabel: "Web/App Solution",
+    role: "Full-Stack Developer",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
+    description: "Built a lightweight internal CRM for Cursive's sales team — pipeline tracking, notes, and follow-up reminders — replacing a messy spreadsheet workflow.",
+    skills: ["Custom CRM", "Database Design", "Pipeline Tracking", "Backend API"],
+    gallery: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "meridian-branding",
+    title: "Meridian Studio — Brand Identity",
+    category: "branding",
+    categoryLabel: "Branding",
+    role: "Brand Strategist",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
+    description: "Built a full brand identity for Meridian Studio from the ground up — naming direction input, logo suite, and a guideline document the team still references today.",
+    skills: ["Brand Strategy", "Logo Suite", "Brand Guidelines", "Stationery"],
+    gallery: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
+    ]
+  },
+  {
+    id: "oakwood-branding",
+    title: "Oakwood Goods — Rebrand",
+    category: "branding",
+    categoryLabel: "Branding",
+    role: "Brand Designer",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
+    description: "Modernized Oakwood Goods' decade-old branding — refined logo, updated color palette, and packaging redesign that kept the heritage feel customers loved.",
+    skills: ["Rebrand", "Packaging Design", "Color Palette", "Brand Guidelines"],
+    gallery: [
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
+    ]
+  }
+];
+
+const workCategories = [
+  { key: "website", label: "Custom Website" },
+  { key: "ecommerce", label: "E-Commerce" },
+  { key: "logo", label: "Logo Design" },
+  { key: "seo", label: "SEO" },
+  { key: "smm", label: "SMM" },
+  { key: "animation", label: "Animation" },
+  { key: "webapp", label: "Web/App Solution" },
+  { key: "branding", label: "Branding" }
+];
+
+/* Render filter tabs */
+const workTabsWrap = document.getElementById('workTabs');
+workCategories.forEach((cat, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'work-tab' + (i === 0 ? ' active' : '');
+  btn.dataset.key = cat.key;
+  btn.textContent = cat.label;
+  btn.addEventListener('click', () => filterWork(cat.key));
+  workTabsWrap.appendChild(btn);
+});
+
+/* Render work cards, optionally filtered by category */
+let workPage = 0; // current "page" — each page shows 2 cards
+
+function renderWorkCards(filterKey){
+  const grid = document.getElementById('workGrid');
+  grid.innerHTML = '';
+  const items = workData.filter(p => p.category === filterKey);
+
+  items.forEach(project => {
+    const card = document.createElement('div');
+    card.className = 'case-card';
+    card.dataset.id = project.id;
+    card.style.backgroundImage = `linear-gradient(160deg, rgba(21,22,27,.55), rgba(21,22,27,.75)), url('${project.image}')`;
+    card.style.backgroundSize = 'cover';
+    card.style.backgroundPosition = 'center';
+    card.innerHTML = `
+      <div class="case-card-inner">
+        <div>
+          <div class="case-tag">${project.categoryLabel}</div>
+          <h4>${project.title}</h4>
+        </div>
+        <div class="case-arrow"><i class="bi bi-arrow-up-right"></i></div>
+      </div>
+    `;
+    card.addEventListener('click', () => openWorkModal(card.dataset.id));
+    grid.appendChild(card);
+  });
+
+  workPage = 0;
+  renderWorkDots();
+  updateWorkSlider();
+}
+
+function getVisibleCount(){
+  return window.innerWidth < 768 ? 1 : 2;
+}
+
+function renderWorkDots(){
+  const dotsWrap = document.getElementById('workDots');
+  dotsWrap.innerHTML = '';
+  const track = document.getElementById('workGrid');
+  const visibleCount = getVisibleCount();
+  const pageCount = Math.max(1, Math.ceil(track.children.length / visibleCount));
+
+  for (let i = 0; i < pageCount; i++){
+    const dot = document.createElement('button');
+    dot.className = 'work-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => {
+      workPage = i;
+      updateWorkSlider();
+    });
+    dotsWrap.appendChild(dot);
+  }
+}
+
+function updateWorkSlider(){
+  const track = document.getElementById('workGrid');
+  if (!track.children.length) return;
+
+  const visibleCount = getVisibleCount();
+  const pageCount = Math.max(1, Math.ceil(track.children.length / visibleCount));
+  const maxPage = pageCount - 1;
+  workPage = Math.max(0, Math.min(workPage, maxPage));
+
+  const viewportWidth = track.parentElement.getBoundingClientRect().width;
+  track.style.transform = `translateX(-${workPage * viewportWidth}px)`;
+
+  document.getElementById('workPrev').disabled = workPage <= 0;
+  document.getElementById('workNext').disabled = workPage >= maxPage;
+
+  document.querySelectorAll('.work-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === workPage);
+  });
+}
+
+document.getElementById('workNext').addEventListener('click', () => {
+  workPage++;
+  updateWorkSlider();
+});
+document.getElementById('workPrev').addEventListener('click', () => {
+  workPage--;
+  updateWorkSlider();
+});
+window.addEventListener('resize', () => {
+  renderWorkDots();
+  updateWorkSlider();
+});
+
+function filterWork(key){
+  document.querySelectorAll('.work-tab').forEach(t => t.classList.toggle('active', t.dataset.key === key));
+  renderWorkCards(key);
+}
+
+/* Popup modal with role, description, skills, and image gallery */
+const workModalEl = document.getElementById('workModal');
+const workModal = new bootstrap.Modal(workModalEl);
+
+function openWorkModal(id){
+  const project = workData.find(p => p.id === id);
+  if (!project) return;
+
+  document.getElementById('workModalTitle').textContent = project.title;
+  document.getElementById('workModalRole').textContent = "My role — " + project.role;
+  document.getElementById('workModalCategory').textContent = project.categoryLabel;
+  document.getElementById('workModalDesc').textContent = project.description;
+  document.getElementById('workModalHero').src = project.image;
+  document.getElementById('workModalHero').alt = project.title;
+
+  const skillsWrap = document.getElementById('workModalSkills');
+  skillsWrap.innerHTML = project.skills.map(s => `<span class="skill-chip">${s}</span>`).join('');
+
+  const galleryWrap = document.getElementById('workModalGallery');
+  galleryWrap.innerHTML = project.gallery.map(src => `<img src="${src}" alt="${project.title} screenshot">`).join('');
+
+  workModal.show();
+}
+
+/* Initial render: show first category (Custom Website) */
+renderWorkCards('website');
 </script>
 
 </body>
