@@ -1355,8 +1355,9 @@ function updateTestiSlider(){
   const maxPage = pageCount - 1;
   testiPage = Math.max(0, Math.min(testiPage, maxPage));
 
-  const viewportWidth = track.parentElement.getBoundingClientRect().width;
-  track.style.transform = `translateX(-${testiPage * viewportWidth}px)`;
+  const cardWidth = track.children[0].getBoundingClientRect().width + 24; // card + gap
+  const step = cardWidth * visibleCount;
+  track.style.transform = `translateX(-${testiPage * step}px)`;
 
   document.querySelectorAll('.testi-dot').forEach((d, i) => {
     d.classList.toggle('active', i === testiPage);
@@ -1930,8 +1931,9 @@ function updateWorkSlider(){
   const maxPage = pageCount - 1;
   workPage = Math.max(0, Math.min(workPage, maxPage));
 
-  const viewportWidth = track.parentElement.getBoundingClientRect().width;
-  track.style.transform = `translateX(-${workPage * viewportWidth}px)`;
+  const cardWidth = track.children[0].getBoundingClientRect().width + 24; // card + gap
+  const step = cardWidth * visibleCount;
+  track.style.transform = `translateX(-${workPage * step}px)`;
 
   document.getElementById('workPrev').disabled = workPage <= 0;
   document.getElementById('workNext').disabled = workPage >= maxPage;
