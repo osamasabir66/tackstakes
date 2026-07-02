@@ -494,8 +494,23 @@ a{text-decoration:none; color:inherit;}
   border:1px solid var(--line);
   border-radius:22px;
   padding:32px;
-  min-width:calc(33.333% - 16px);
+  min-width:calc(50% - 12px);
+  width:calc(50% - 12px);
   flex-shrink:0;
+}
+.testi-dots{
+  display:flex; justify-content:center; align-items:center;
+  gap:10px; margin-top:28px;
+}
+.testi-dot{
+  width:9px; height:9px; border-radius:50%;
+  background:var(--line);
+  border:none; padding:0; cursor:pointer;
+  transition:all .25s ease;
+}
+.testi-dot.active{
+  background:var(--ink);
+  width:26px; border-radius:100px;
 }
 .testi-card p{
   font-size:16px;
@@ -735,7 +750,7 @@ footer a:hover{color:#fff;}
   .nav-links{display:none;}
   .hero{padding-top:120px;}
   .hero-visual{display:none;}
-  .testi-card{min-width:100%;}
+  .testi-card{min-width:100%; width:100%;}
   .process-title{width:auto;}
   .process-row{flex-direction:column; gap:10px;}
 }
@@ -1064,40 +1079,48 @@ footer a:hover{color:#fff;}
         <div class="testi-card">
           <p>"TackStakes shipped our MVP in eight weeks and had a paid campaign running the week we launched. We were getting signups before our competitors finished their wireframes."</p>
           <div class="testi-person">
-            <div class="testi-avatar">A</div>
-            <div><div class="testi-name">Ayesha Raza</div><div class="testi-role">Founder, fintech startup</div></div>
+            <div class="testi-avatar">E</div>
+            <div><div class="testi-name">Emily Carter</div><div class="testi-role">Founder, fintech startup</div></div>
           </div>
         </div>
         <div class="testi-card">
           <p>"We came in for ads and ended up rebuilding our entire booking system with them. Having one team own both made every handoff disappear."</p>
           <div class="testi-person">
-            <div class="testi-avatar">H</div>
-            <div><div class="testi-name">Hassan Tariq</div><div class="testi-role">Owner, travel platform</div></div>
+            <div class="testi-avatar">J</div>
+            <div><div class="testi-name">James Bennett</div><div class="testi-role">Owner, travel platform</div></div>
           </div>
         </div>
         <div class="testi-card">
           <p>"Our ROAS doubled in the first quarter, but what stuck with us was how clearly they explained why something was or wasn't working."</p>
           <div class="testi-person">
-            <div class="testi-avatar">M</div>
-            <div><div class="testi-name">Mahnoor Sheikh</div><div class="testi-role">Marketing Lead, D2C brand</div></div>
+            <div class="testi-avatar">O</div>
+            <div><div class="testi-name">Olivia Brooks</div><div class="testi-role">Marketing Lead, D2C brand</div></div>
           </div>
         </div>
         <div class="testi-card">
           <p>"They rebuilt our dashboard from scratch and it just works now. No more weekly bug reports, no more guessing what broke overnight."</p>
           <div class="testi-person">
-            <div class="testi-avatar">B</div>
-            <div><div class="testi-name">Bilal Ahmed</div><div class="testi-role">CTO, logistics company</div></div>
+            <div class="testi-avatar">D</div>
+            <div><div class="testi-name">Daniel Foster</div><div class="testi-role">CTO, logistics company</div></div>
           </div>
         </div>
         <div class="testi-card">
           <p>"We tried three agencies before TackStakes. They were the first ones who could explain our own product back to us better than we could."</p>
           <div class="testi-person">
-            <div class="testi-avatar">S</div>
-            <div><div class="testi-name">Sana Khalid</div><div class="testi-role">Co-founder, skincare brand</div></div>
+            <div class="testi-avatar">G</div>
+            <div><div class="testi-name">Grace Miller</div><div class="testi-role">Co-founder, skincare brand</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <p>"The branding work alone would've been worth it, but they kept going and helped us rethink our whole onboarding flow. Signups are up since."</p>
+          <div class="testi-person">
+            <div class="testi-avatar">R</div>
+            <div><div class="testi-name">Ryan Coleman</div><div class="testi-role">Founder, SaaS platform</div></div>
           </div>
         </div>
       </div>
     </div>
+    <div class="testi-dots" id="testiDots"></div>
   </div>
 </section>
 
@@ -1300,29 +1323,65 @@ const counterObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 counters.forEach(el => counterObserver.observe(el));
 
-/* ===== Testimonial slider ===== */
+/* ===== Testimonial slider (2 cards per slide, with dots) ===== */
 const track = document.getElementById('testiTrack');
 const cards = track.querySelectorAll('.testi-card');
-let cardsPerView = window.innerWidth < 992 ? 1 : 3;
-let testiIndex = 0;
+let testiPage = 0;
+
+function getTestiVisibleCount(){
+  return window.innerWidth < 992 ? 1 : 2;
+}
+
+function renderTestiDots(){
+  const dotsWrap = document.getElementById('testiDots');
+  dotsWrap.innerHTML = '';
+  const visibleCount = getTestiVisibleCount();
+  const pageCount = Math.max(1, Math.ceil(cards.length / visibleCount));
+
+  for (let i = 0; i < pageCount; i++){
+    const dot = document.createElement('button');
+    dot.className = 'testi-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => {
+      testiPage = i;
+      updateTestiSlider();
+    });
+    dotsWrap.appendChild(dot);
+  }
+}
 
 function updateTestiSlider(){
-  cardsPerView = window.innerWidth < 992 ? 1 : 3;
-  const cardWidth = track.children[0].getBoundingClientRect().width + 24; // gap
-  track.style.transform = `translateX(-${testiIndex * cardWidth}px)`;
+  const visibleCount = getTestiVisibleCount();
+  const pageCount = Math.max(1, Math.ceil(cards.length / visibleCount));
+  const maxPage = pageCount - 1;
+  testiPage = Math.max(0, Math.min(testiPage, maxPage));
+
+  const viewportWidth = track.parentElement.getBoundingClientRect().width;
+  track.style.transform = `translateX(-${testiPage * viewportWidth}px)`;
+
+  document.querySelectorAll('.testi-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === testiPage);
+  });
 }
 
 document.getElementById('testiNext').addEventListener('click', () => {
-  const maxIndex = cards.length - cardsPerView;
-  testiIndex = testiIndex >= maxIndex ? 0 : testiIndex + 1;
+  const visibleCount = getTestiVisibleCount();
+  const maxPage = Math.max(1, Math.ceil(cards.length / visibleCount)) - 1;
+  testiPage = testiPage >= maxPage ? 0 : testiPage + 1;
   updateTestiSlider();
 });
 document.getElementById('testiPrev').addEventListener('click', () => {
-  const maxIndex = cards.length - cardsPerView;
-  testiIndex = testiIndex <= 0 ? maxIndex : testiIndex - 1;
+  const visibleCount = getTestiVisibleCount();
+  const maxPage = Math.max(1, Math.ceil(cards.length / visibleCount)) - 1;
+  testiPage = testiPage <= 0 ? maxPage : testiPage - 1;
   updateTestiSlider();
 });
-window.addEventListener('resize', updateTestiSlider);
+window.addEventListener('resize', () => {
+  renderTestiDots();
+  updateTestiSlider();
+});
+
+renderTestiDots();
+updateTestiSlider();
 
 /* Auto-rotate testimonials every 5s */
 setInterval(() => {
