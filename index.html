@@ -4,8 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TackStakes — Software House & Digital Marketing Agency</title>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <meta name="description" content="TackStakes builds software products and runs growth marketing that turns budgets into revenue.">
+
+<!-- Social share preview (WhatsApp, iMessage, Facebook, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tackstakes.com/">
+<meta property="og:title" content="TackStakes — Software House & Digital Marketing Agency">
+<meta property="og:description" content="TackStakes builds software products and runs growth marketing that turns budgets into revenue.">
+<meta property="og:image" content="https://tackstakes.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TackStakes — Software House & Digital Marketing Agency">
+<meta name="twitter:description" content="TackStakes builds software products and runs growth marketing that turns budgets into revenue.">
+<meta name="twitter:image" content="https://tackstakes.com/images/og-image.png">
 
 <!-- Google Fonts: Bricolage Grotesque (display) + Inter (body) + JetBrains Mono (code-style tags) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1396,18 +1409,15 @@ setInterval(() => {
 ========================================================= */
 const workData = [
   {
-    id: "loopline-app",
-    title: "Loopline — Payments App",
+    id: "hajjplus-dash",
+    title: "Hajj Plus — Admin Dashboard",
     category: "webapp",
     categoryLabel: "Web/App Solution",
-    role: "Product Designer & Developer",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
-    description: "Designed and developed a cross-platform payments app for Loopline, from onboarding flow to transaction dashboard. Built a custom backend, integrated secure payment rails, and shipped a polished mobile experience that held up under real transaction volume from day one.",
-    skills: ["Mobile App", "Backend API", "Payment Integration", "UI/UX Design", "QA Testing"],
-    gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
-    ]
+    role: "Full-Stack Developer",
+    image: "images/hajjplus-dash.png",
+    description: "Built the admin web app behind Hajj Plus — a dashboard for travel agencies to manage groups, customers, packages, and schedules. Included live revenue and conversion stats, group chat, customer profile intake forms, and agency/vendor management in one place.",
+    skills: ["Web App", "Admin Dashboard", "Live Stats", "Form Builder", "Group Chat"],
+    gallery: []
   },
   {
     id: "northbridge-seo",
@@ -1438,46 +1448,136 @@ const workData = [
     ]
   },
   {
-    id: "acmefleet-website",
-    title: "Acme Fleet — Ops Dashboard",
+    id: "brickpod",
+    title: "Brickpod Studios — Podcast Studio",
     category: "website",
     categoryLabel: "Custom Website",
-    role: "Full-Stack Developer",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
-    description: "Rebuilt Acme Fleet's internal operations dashboard as a fast, responsive web app. Replaced a slow legacy system with a clean interface for live fleet tracking, scheduling, and reporting — cutting daily admin time significantly.",
-    skills: ["Custom Website", "Admin Dashboard", "API Integration", "Responsive Design"],
-    gallery: [
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70"
-    ]
+    role: "Web Developer",
+    image: "images/brickpod.png",
+    description: "Designed and built the website for Brickpod Studios, a podcast production studio. The site walks visitors through the studio experience, pricing plans, and booking flow, backed by a real gallery of the studio space to build trust before visitors ever step inside.",
+    skills: ["Custom Website", "Booking Flow", "Pricing Page", "Responsive Design"],
+    gallery: []
   },
   {
-    id: "corex-ecommerce",
-    title: "Corex — E-Commerce Store",
+    id: "careermap",
+    title: "Career Map — Career Development Platform",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "images/careermap.png",
+    description: "Built the marketing website for Career Map, an AI-powered career development platform for students and professionals. Focused on clearly explaining the AI tool's value with simple sections, testimonial-style highlights, and a low-friction sign-up flow.",
+    skills: ["Custom Website", "Landing Page Design", "Conversion Optimization", "Responsive Design"],
+    gallery: []
+  },
+  {
+    id: "fabric",
+    title: "Fabric — AI Workspace Website",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "images/fabric.png",
+    description: "Built the product website for Fabric, an all-in-one AI workspace app. Structured the page around clear before/after comparisons and feature breakdowns to make a fairly abstract productivity tool easy to understand at a glance.",
+    skills: ["Custom Website", "Product Marketing Site", "Feature Sections", "Responsive Design"],
+    gallery: []
+  },
+  {
+    id: "gotlaundry",
+    title: "Got Laundry — Laundry Service Website",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "images/gotlaundry.png",
+    description: "Built a full marketing site for Got Laundry's pickup-and-delivery laundry service, including service breakdowns, an FAQ section, and a scheduling call-to-action repeated throughout the page to keep conversions front and center.",
+    skills: ["Custom Website", "FAQ Section", "Service Pages", "Responsive Design"],
+    gallery: []
+  },
+  {
+    id: "hajjplus",
+    title: "Hajj Plus — Pilgrimage App Website",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "images/hajjplus.png",
+    description: "Designed the website for Hajj Plus, a companion app for pilgrims performing Hajj and Umrah. Built out the feature walkthrough, pricing plans, and app download sections with a warm, respectful visual tone suited to the subject matter.",
+    skills: ["Custom Website", "App Landing Page", "Pricing Plans", "Responsive Design"],
+    gallery: []
+  },
+  {
+    id: "noxus",
+    title: "Noxus — AI Enterprise Platform Website",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "images/noxus.png",
+    description: "Built the website for Noxus, an enterprise AI platform. Prioritized a clean, credible layout with trust signals, measurable-impact stats, and client logos to speak directly to an enterprise buying audience.",
+    skills: ["Custom Website", "Enterprise Web Design", "Trust Signals", "Responsive Design"],
+    gallery: []
+  },
+  {
+    id: "qbankmodel",
+    title: "Q Bank Model — Exam Prep Website",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "images/qbankmodel.png",
+    description: "Built the website for Q Bank Model, an AMC exam preparation platform for medical professionals. Structured the site around clear feature breakdowns, a dashboard preview, and genuine student testimonials to build credibility with a skeptical audience.",
+    skills: ["Custom Website", "Subscription Site", "Testimonials Section", "Responsive Design"],
+    gallery: []
+  },
+  {
+    id: "visualtroops",
+    title: "Visual Troops — Agency Website",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "images/visualtroops.png",
+    description: "Built a bold, dark-themed website for Visual Troops, an e-commerce digital marketing agency. Used a strong visual identity, a services breakdown, and a project gallery to let the agency's own work speak for itself.",
+    skills: ["Custom Website", "Portfolio Gallery", "Dark Theme Design", "Responsive Design"],
+    gallery: []
+  },
+  {
+    id: "xaloon",
+    title: "Xaloon — Beauty Booking Website",
+    category: "website",
+    categoryLabel: "Custom Website",
+    role: "Web Developer",
+    image: "images/xaloon.png",
+    description: "Designed and built the website for Xaloon, a beauty and wellness booking platform. Focused on a friendly, approachable layout that walks visitors through discovering a salon, picking a service, and booking — all in a few taps.",
+    skills: ["Custom Website", "App Landing Page", "Booking Flow", "Responsive Design"],
+    gallery: []
+  },
+  {
+    id: "bakim",
+    title: "Bakim — Hair Care Store",
     category: "ecommerce",
     categoryLabel: "E-Commerce",
     role: "E-Commerce Developer",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
-    description: "Launched a full online store for Corex with custom checkout, inventory management, and multiple payment gateways. Optimized product pages for conversion and set up analytics so the team could track performance from week one.",
-    skills: ["E-Commerce", "Checkout Flow", "Payment Gateways", "Inventory System"],
-    gallery: [
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
-    ]
+    image: "images/bakim.png",
+    description: "Built the online store for Bakim, a natural hair care brand. Combined an editorial, magazine-style homepage with a full product catalog, signature treatment bundles, and a clean checkout so browsing feels as good as buying.",
+    skills: ["E-Commerce", "Product Catalog", "Checkout Flow", "Brand Storytelling"],
+    gallery: []
   },
   {
-    id: "nova-logo",
-    title: "Nova Roastery — Logo & Identity",
+    id: "logo-design-set-1",
+    title: "Logo Design — Client Collection 1",
     category: "logo",
     categoryLabel: "Logo Design",
     role: "Logo Designer",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
-    description: "Designed a distinct, versatile logo for Nova Roastery that works from a coffee cup sleeve to a storefront sign. Explored six directions before landing on a mark that felt both premium and approachable.",
-    skills: ["Logo Design", "Concept Exploration", "Color Palette", "Favicon & Social Kit"],
-    gallery: [
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
-    ]
+    image: "images/logo-design-01.png",
+    description: "A collection of logo designs delivered for clients across industries — from beauty booking apps to career platforms to food brands. Each mark was built to work as a standalone icon as well as a full wordmark lockup.",
+    skills: ["Logo Design", "Wordmark", "Icon Design", "Brand Mark"],
+    gallery: []
+  },
+  {
+    id: "logo-design-set-2",
+    title: "Logo Design — Client Collection 2",
+    category: "logo",
+    categoryLabel: "Logo Design",
+    role: "Logo Designer",
+    image: "images/logo-design-02.png",
+    description: "A second collection of logo designs spanning podcast studios, logistics platforms, publishing brands, and digital agencies — each identity tailored to its own industry and tone.",
+    skills: ["Logo Design", "Wordmark", "Icon Design", "Brand Mark"],
+    gallery: []
   },
   {
     id: "pulse-smm",
@@ -1508,46 +1608,17 @@ const workData = [
     ]
   },
   {
-    id: "bloom-website",
-    title: "Bloom Interiors — Portfolio Site",
-    category: "website",
-    categoryLabel: "Custom Website",
-    role: "Web Developer",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
-    description: "Built a fast, image-forward portfolio website for Bloom Interiors to showcase past projects. Focused on large, well-optimized galleries and a simple inquiry form that made it easy for potential clients to reach out.",
-    skills: ["Custom Website", "Gallery Layout", "Contact Forms", "Performance Optimization"],
-    gallery: [
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70"
-    ]
-  },
-  {
-    id: "fernwood-ecommerce",
-    title: "Fernwood — Online Store",
+    id: "continuum",
+    title: "Continuum Peptides — Research Store",
     category: "ecommerce",
     categoryLabel: "E-Commerce",
     role: "E-Commerce Developer",
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
-    description: "Migrated Fernwood's storefront to a faster, more flexible e-commerce platform. Rebuilt product filtering, streamlined the checkout to fewer steps, and set up abandoned-cart recovery to help lift conversion rates.",
-    skills: ["E-Commerce", "Product Filtering", "Checkout Optimization", "Cart Recovery"],
-    gallery: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
-    ]
+    image: "images/continuum.png",
+    description: "Built a dark, lab-grade e-commerce store for Continuum Peptides. Structured detailed compound pages with purity documentation, filterable browsing by category and size, and a streamlined cart built for a research-focused audience.",
+    skills: ["E-Commerce", "Product Filtering", "Catalog Structure", "Dark Theme Design"],
+    gallery: []
   },
   {
-    id: "circuit-logo",
-    title: "Circuit Labs — Logo Mark",
-    category: "logo",
-    categoryLabel: "Logo Design",
-    role: "Logo Designer",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
-    description: "Created a sharp, technical logomark for Circuit Labs that reads clearly at icon size while still feeling distinct on a full letterhead. Delivered a tight set of usage guidelines alongside the final files.",
-    skills: ["Logo Design", "Icon System", "Usage Guidelines", "File Formats"],
-    gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
-    ]
   },
   {
     id: "greenleaf-seo",
@@ -1592,18 +1663,15 @@ const workData = [
     ]
   },
   {
-    id: "trackpoint-webapp",
-    title: "TrackPoint — Field Service App",
+    id: "xaloon-app",
+    title: "Xaloon — Beauty Booking App",
     category: "webapp",
     categoryLabel: "Web/App Solution",
-    role: "Full-Stack Developer",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
-    description: "Built a field-service mobile app for TrackPoint's technicians — job scheduling, offline mode, and photo-based job reports that sync automatically once back online.",
-    skills: ["Mobile App", "Offline Sync", "Scheduling System", "Backend API"],
-    gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70"
-    ]
+    role: "Mobile App Developer",
+    image: "images/xaloon-app.png",
+    description: "Built the Xaloon mobile app end-to-end — salon and stylist discovery with live map search, favorites, detailed service and stylist pages, and a smooth booking flow from browsing to confirmed appointment.",
+    skills: ["Mobile App", "Map Integration", "Booking Flow", "UI/UX Design"],
+    gallery: []
   },
   {
     id: "alta-branding",
@@ -1620,88 +1688,15 @@ const workData = [
     ]
   },
   {
-    id: "solstice-website",
-    title: "Solstice Law — Firm Website",
-    category: "website",
-    categoryLabel: "Custom Website",
-    role: "Web Developer",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
-    description: "Rebuilt Solstice Law's outdated site into a clean, trust-building website with clear practice-area pages and a simple consultation booking flow that cut down back-and-forth emails.",
-    skills: ["Custom Website", "Booking Flow", "Content Structure", "Mobile Responsive"],
-    gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
-    ]
-  },
-  {
-    id: "petal-website",
-    title: "Petal & Co — Boutique Website",
-    category: "website",
-    categoryLabel: "Custom Website",
-    role: "Web Developer",
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
-    description: "Designed a light, editorial-style website for Petal & Co's boutique, built around large product photography and a lookbook-style browsing experience.",
-    skills: ["Custom Website", "Editorial Layout", "Image Optimization", "CMS Setup"],
-    gallery: [
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
-    ]
-  },
-  {
-    id: "anchor-ecommerce",
-    title: "Anchor Supply — Store Relaunch",
+    id: "couponae",
+    title: "Coupon.AE — Deals & Coupons Platform",
     category: "ecommerce",
     categoryLabel: "E-Commerce",
     role: "E-Commerce Developer",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
-    description: "Relaunched Anchor Supply's store on a faster platform, cleaned up the product catalog, and rebuilt shipping rules so checkout finally matched their real fulfillment process.",
-    skills: ["E-Commerce", "Catalog Cleanup", "Shipping Rules", "Platform Migration"],
-    gallery: [
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
-    ]
-  },
-  {
-    id: "wildflower-ecommerce",
-    title: "Wildflower Goods — Shopify Build",
-    category: "ecommerce",
-    categoryLabel: "E-Commerce",
-    role: "E-Commerce Developer",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
-    description: "Built Wildflower Goods a custom Shopify theme from scratch, with bundle pricing, a wishlist feature, and a subscription option for repeat customers.",
-    skills: ["Shopify", "Custom Theme", "Subscriptions", "Bundle Pricing"],
-    gallery: [
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
-    ]
-  },
-  {
-    id: "ridgeline-logo",
-    title: "Ridgeline Outdoors — Logo Design",
-    category: "logo",
-    categoryLabel: "Logo Design",
-    role: "Logo Designer",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
-    description: "Designed a rugged, outdoor-ready logomark for Ridgeline that holds up on embroidered gear as well as it does on a digital storefront.",
-    skills: ["Logo Design", "Merch-Ready Files", "Color Palette", "Concept Exploration"],
-    gallery: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
-    ]
-  },
-  {
-    id: "kindred-logo",
-    title: "Kindred Studio — Brand Mark",
-    category: "logo",
-    categoryLabel: "Logo Design",
-    role: "Logo Designer",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
-    description: "Created a soft, hand-drawn-feeling mark for Kindred Studio, paired with a simple secondary monogram for use on packaging and social avatars.",
-    skills: ["Logo Design", "Monogram", "Favicon & Social Kit", "Typography"],
-    gallery: [
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
-    ]
+    image: "images/coupon_ae.png",
+    description: "Built the storefront for Coupon.AE, a deals and coupon-code platform for UAE shoppers. Organized hundreds of store listings and offers into browsable categories, with featured deal banners and a fast search that keeps bargain hunters coming back.",
+    skills: ["E-Commerce", "Category Browsing", "Search & Filtering", "Deal Merchandising"],
+    gallery: []
   },
   {
     id: "harbor-seo",
@@ -1785,34 +1780,6 @@ const workData = [
     gallery: [
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
-    ]
-  },
-  {
-    id: "havenly-webapp",
-    title: "Havenly — Booking Platform",
-    category: "webapp",
-    categoryLabel: "Web/App Solution",
-    role: "Full-Stack Developer",
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
-    description: "Built a booking and scheduling web app for Havenly with real-time availability, automated reminders, and a simple admin panel for managing staff calendars.",
-    skills: ["Web App", "Real-Time Scheduling", "Admin Panel", "Automated Notifications"],
-    gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
-    ]
-  },
-  {
-    id: "cursive-webapp",
-    title: "Cursive — CRM Tool",
-    category: "webapp",
-    categoryLabel: "Web/App Solution",
-    role: "Full-Stack Developer",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
-    description: "Built a lightweight internal CRM for Cursive's sales team — pipeline tracking, notes, and follow-up reminders — replacing a messy spreadsheet workflow.",
-    skills: ["Custom CRM", "Database Design", "Pipeline Tracking", "Backend API"],
-    gallery: [
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
     ]
   },
   {
