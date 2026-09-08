@@ -416,43 +416,6 @@ a{text-decoration:none; color:inherit;}
   transform:translateY(0);
 }
 
-/* ===================== ACCOMPLISH / PATH CARDS ===================== */
-.path-card{
-  display:block;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:32px 28px;
-  height:100%;
-  position:relative;
-  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
-}
-.path-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 24px 50px rgba(21,22,27,0.10);
-  border-color:transparent;
-}
-.path-icon{
-  width:46px;height:46px;border-radius:14px;
-  background:var(--bg-soft);
-  display:flex; align-items:center; justify-content:center;
-  font-size:19px; color:var(--accent);
-  margin-bottom:20px;
-}
-.path-label{
-  font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft); margin-bottom:8px;
-}
-.path-card h3{font-size:19px; margin-bottom:0; padding-right:34px; line-height:1.3;}
-.path-arrow{
-  position:absolute; bottom:26px; right:26px;
-  width:36px;height:36px;border-radius:50%;
-  border:1px solid var(--line);
-  display:flex; align-items:center; justify-content:center;
-  transition:all .3s ease;
-  flex-shrink:0;
-}
-.path-card:hover .path-arrow{background:var(--ink); color:var(--bg); transform:rotate(45deg); border-color:var(--ink);}
-
 /* ===================== SERVICES ===================== */
 .service-card{
   background:var(--card);
@@ -701,21 +664,6 @@ a{text-decoration:none; color:inherit;}
   font-family:var(--font-mono); font-size:12.5px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:4px;
 }
 .work-modal-desc{font-size:15px; color:var(--ink); line-height:1.75; margin:18px 0 24px;}
-.case-block{
-  padding:18px 0;
-  border-top:1px solid var(--line);
-}
-.case-block:first-of-type{border-top:none; padding-top:22px;}
-.case-block-label{
-  font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:.04em;
-  color:var(--accent); font-weight:700; margin-bottom:8px;
-}
-.case-block-text{font-size:15px; color:var(--ink); line-height:1.7; margin:0;}
-.case-block-lesson{
-  background:var(--bg-soft); border:1px solid var(--line); border-radius:14px;
-  padding:18px 20px; margin-top:6px;
-}
-.case-block-lesson .case-block-label{color:var(--ink-soft);}
 .skill-chip{
   display:inline-block; font-family:var(--font-mono); font-size:12.5px;
   background:var(--bg-soft); border:1px solid var(--line); color:var(--ink);
@@ -725,7 +673,7 @@ a{text-decoration:none; color:inherit;}
   width:100%; border-radius:16px; margin-bottom:14px; border:1px solid var(--line); display:block;
 }
 .work-modal-hero{
-  width:100%; border-radius:16px; margin-bottom:8px; border:1px solid var(--line); display:block;
+  width:100%; border-radius:16px; margin-bottom:20px; border:1px solid var(--line); display:block;
 }
 
 /* ===================== ABOUT ===================== */
@@ -837,7 +785,7 @@ footer a:hover{color:#fff;}
       <li><a href="#testimonials">Reviews</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <a href="contact.html" class="btn-tack btn-tack-primary d-none d-lg-inline-flex">Book a Free Strategy Call</a>
+    <a href="contact.html" class="btn-tack btn-tack-primary d-none d-lg-inline-flex">Start a Project</a>
     <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav">
       <i class="bi bi-list" style="font-size:28px;"></i>
     </button>
@@ -856,7 +804,7 @@ footer a:hover{color:#fff;}
     <a href="#about">About</a>
     <a href="pricing.html">Pricing</a>
     <a href="#testimonials">Reviews</a>
-    <a href="contact.html" class="btn-tack btn-tack-primary mt-3">Book a Free Strategy Call</a>
+    <a href="contact.html" class="btn-tack btn-tack-primary mt-3">Start a Project</a>
   </div>
 </div>
 
@@ -868,18 +816,18 @@ footer a:hover{color:#fff;}
   <div class="container-x">
     <div class="row align-items-center">
       <div class="col-lg-7">
-        <div class="eyebrow">Product + Growth Partner</div>
+        <div class="eyebrow">Software House &amp; Marketing Agency</div>
         <h1 class="hero-headline">
           <span class="line"><span>We Build</span></span>
           <span class="line"><span>Products.</span></span>
           <span class="line"><span>We Build Growth.<i class="cursor-blink">&nbsp;</i></span></span>
         </h1>
         <p class="hero-sub">
-          Your product team and growth team — under one roof. We design, build,
-          launch, and market digital products, so you never have to hand off between vendors.
+          TackStakes is where code meets campaigns. We design and ship software, then
+          run the marketing that gets it in front of the right people — under one roof.
         </p>
         <div class="d-flex gap-3 flex-wrap">
-          <a href="contact.html" class="btn-tack btn-tack-primary">Book a Free Strategy Call <i class="bi bi-arrow-up-right"></i></a>
+          <a href="contact.html" class="btn-tack btn-tack-primary">Start a Project <i class="bi bi-arrow-up-right"></i></a>
           <a href="#work" class="btn-tack btn-tack-outline">See our work</a>
         </div>
 
@@ -984,89 +932,13 @@ footer a:hover{color:#fff;}
 </section>
 
 <!-- =========================================================
-     WHAT ARE YOU TRYING TO ACCOMPLISH — routes visitors to the
-     right offer/landing page based on their situation
-========================================================= -->
-<section class="section" style="padding-top:20px;">
-  <div class="container-x">
-    <div class="section-head reveal">
-      <div class="eyebrow">Where do you start?</div>
-      <h2>What are you trying <br>to accomplish?</h2>
-    </div>
-
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3 reveal">
-        <a href="contact.html?goal=mvp" class="path-card">
-          <div class="path-icon"><i class="bi bi-rocket-takeoff"></i></div>
-          <div class="path-label">I have an idea</div>
-          <h3>Build my MVP</h3>
-          <div class="path-arrow"><i class="bi bi-arrow-up-right"></i></div>
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-3 reveal">
-        <a href="contact.html?goal=growth" class="path-card">
-          <div class="path-icon"><i class="bi bi-graph-up-arrow"></i></div>
-          <div class="path-label">I have a product</div>
-          <h3>Grow my business</h3>
-          <div class="path-arrow"><i class="bi bi-arrow-up-right"></i></div>
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-3 reveal">
-        <a href="contact.html?goal=rebuild" class="path-card">
-          <div class="path-icon"><i class="bi bi-tools"></i></div>
-          <div class="path-label">My tech is holding me back</div>
-          <h3>Rebuild my software</h3>
-          <div class="path-arrow"><i class="bi bi-arrow-up-right"></i></div>
-        </a>
-      </div>
-      <div class="col-md-6 col-lg-3 reveal">
-        <a href="contact.html?goal=audit" class="path-card">
-          <div class="path-icon"><i class="bi bi-search-heart"></i></div>
-          <div class="path-label">I'm not sure what I need</div>
-          <h3>Get a free audit</h3>
-          <div class="path-arrow"><i class="bi bi-arrow-up-right"></i></div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     CASE STUDIES / WORK
-========================================================= -->
-<section class="section" id="work">
-  <div class="container-x">
-    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4 reveal">
-      <div class="section-head mb-0">
-        <div class="eyebrow">Selected work</div>
-        <h2>Built by us. <br>Trusted by them.</h2>
-      </div>
-      <div class="d-flex gap-2">
-        <button class="work-nav-btn" id="workPrev"><i class="bi bi-arrow-left"></i></button>
-        <button class="work-nav-btn" id="workNext"><i class="bi bi-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <!-- Filter tabs -->
-    <div class="work-tabs" id="workTabs"></div>
-
-    <!-- Cards render here as one horizontal slide -->
-    <div class="work-viewport">
-      <div class="work-track" id="workGrid"></div>
-    </div>
-    <div class="work-dots" id="workDots"></div>
-  </div>
-</section>
-
-<!-- =========================================================
      SERVICES
 ========================================================= -->
 <section class="section" id="services">
   <div class="container-x">
     <div class="section-head reveal">
-      <div class="eyebrow">Capabilities</div>
+      <div class="eyebrow">What we do</div>
       <h2>Two teams. One roof. <br>Your product, end to end.</h2>
-      <p class="mt-3" style="max-width:560px;">The capabilities behind every offer above — mix and match whatever your project needs.</p>
     </div>
 
     <div class="row g-4">
@@ -1266,6 +1138,33 @@ footer a:hover{color:#fff;}
 </section>
 
 <!-- =========================================================
+     CASE STUDIES / WORK
+========================================================= -->
+<section class="section" id="work">
+  <div class="container-x">
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-4 reveal">
+      <div class="section-head mb-0">
+        <div class="eyebrow">Selected work</div>
+        <h2>Built by us. <br>Trusted by them.</h2>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="work-nav-btn" id="workPrev"><i class="bi bi-arrow-left"></i></button>
+        <button class="work-nav-btn" id="workNext"><i class="bi bi-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="work-tabs" id="workTabs"></div>
+
+    <!-- Cards render here as one horizontal slide -->
+    <div class="work-viewport">
+      <div class="work-track" id="workGrid"></div>
+    </div>
+    <div class="work-dots" id="workDots"></div>
+  </div>
+</section>
+
+<!-- =========================================================
      WORK DETAIL MODAL
 ========================================================= -->
 <div class="modal fade" id="workModal" tabindex="-1" aria-hidden="true">
@@ -1278,33 +1177,12 @@ footer a:hover{color:#fff;}
       <div class="modal-body">
         <div class="work-modal-role" id="workModalRole">Role</div>
         <div class="eyebrow" id="workModalCategory" style="margin-bottom:0;">Category</div>
+        <p class="work-modal-desc" id="workModalDesc">Description</p>
+
+        <div style="font-family:var(--font-mono); font-size:12px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:10px;">Skills &amp; deliverables</div>
+        <div id="workModalSkills" class="mb-4"></div>
 
         <img id="workModalHero" class="work-modal-hero" src="" alt="">
-
-        <div class="case-block">
-          <div class="case-block-label">Before</div>
-          <p class="case-block-text" id="workModalBefore"></p>
-        </div>
-        <div class="case-block">
-          <div class="case-block-label">Challenge</div>
-          <p class="case-block-text" id="workModalChallenge"></p>
-        </div>
-        <div class="case-block">
-          <div class="case-block-label" id="workModalBuiltLabel">What we built</div>
-          <p class="case-block-text" id="workModalDesc"></p>
-        </div>
-        <div class="case-block">
-          <div class="case-block-label">Result</div>
-          <p class="case-block-text" id="workModalResult"></p>
-        </div>
-        <div class="case-block case-block-lesson">
-          <div class="case-block-label">Lesson</div>
-          <p class="case-block-text" id="workModalLesson"></p>
-        </div>
-
-        <div style="font-family:var(--font-mono); font-size:12px; text-transform:uppercase; color:var(--ink-soft); margin:24px 0 10px;">Skills &amp; deliverables</div>
-        <div id="workModalSkills" class="mb-3"></div>
-
         <div id="workModalGallery" class="work-modal-gallery"></div>
       </div>
     </div>
@@ -1352,7 +1230,7 @@ footer a:hover{color:#fff;}
       <div class="eyebrow" style="color:var(--accent-2);">Let's talk</div>
       <h2>Got an idea? Let's build it — <br>then make sure people see it.</h2>
       <a href="contact.html" class="btn-tack btn-tack-primary" style="background:var(--accent-2); color:var(--ink); border-color:var(--accent-2);">
-        Book a Free Strategy Call <i class="bi bi-arrow-up-right"></i>
+        Book a Free Call <i class="bi bi-arrow-up-right"></i>
       </a>
     </div>
   </div>
@@ -1384,12 +1262,12 @@ footer a:hover{color:#fff;}
         </div>
       </div>
       <div class="col-lg-2 col-6">
-        <h5>Solutions</h5>
+        <h5>Services</h5>
         <div class="d-flex flex-column gap-2">
-          <a href="contact.html?goal=mvp">MVP Development</a>
-          <a href="contact.html?goal=growth">Product Growth</a>
-          <a href="contact.html?goal=rebuild">Software Rebuild</a>
-          <a href="contact.html?goal=audit">Free Audit</a>
+          <a href="#">Software Dev</a>
+          <a href="#">Marketing</a>
+          <a href="#">Branding</a>
+          <a href="#">Support</a>
         </div>
       </div>
       <div class="col-lg-4">
@@ -1539,11 +1417,6 @@ const workData = [
     image: "images/hajjplus-dash.png",
     description: "Built the admin web app behind Hajj Plus — a dashboard for travel agencies to manage groups, customers, packages, and schedules. Included live revenue and conversion stats, group chat, customer profile intake forms, and agency/vendor management in one place.",
     skills: ["Web App", "Admin Dashboard", "Live Stats", "Form Builder", "Group Chat"],
-    caseBefore: "Hajj Plus needed custom software — off-the-shelf tools weren't fitting the actual workflow.",
-    caseChallenge: "Building something powerful enough to be useful, simple enough to actually get adopted by the team using it day to day.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Shipped a working product Hajj Plus uses as part of their daily operations.",
-    caseLesson: "Internal tools succeed when they remove steps, not when they add features — usability beats feature count.",
     gallery: []
   },
   {
@@ -1555,11 +1428,6 @@ const workData = [
     image: "images/northbridge-seo.png",
     description: "Ran a full technical and content SEO overhaul for Northbridge, fixing crawl issues, restructuring on-page content, and building a targeted link profile. Organic traffic and keyword rankings climbed steadily over the following two quarters.",
     skills: ["Technical SEO", "Keyword Research", "Content Strategy", "Link Building", "Reporting"],
-    caseBefore: "Northbridge's site existed, but wasn't showing up where it mattered — organic search.",
-    caseChallenge: "Diagnosing what was actually holding back rankings, separate from what just looked like a problem.",
-    caseBuiltField: "whatWeDid",
-    caseResult: "Implemented the technical and content fixes Northbridge's site needed to compete in search, tracked ongoing through the client's own analytics.",
-    caseLesson: "SEO is rarely one fix — it's a series of small, correct decisions compounding over months.",
     gallery: []
   },
   {
@@ -1571,11 +1439,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
     description: "Built a complete brand identity system for Vantix — logo, color palette, typography, and a detailed guideline document. Extended the system into packaging and a pitch deck template so the brand stayed consistent across every touchpoint.",
     skills: ["Logo Design", "Brand Guidelines", "Typography", "Packaging", "Pitch Deck"],
-    caseBefore: "Vantix needed a brand identity that felt intentional, not thrown together.",
-    caseChallenge: "Designing a system flexible enough to cover every touchpoint while keeping the brand instantly recognizable.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a full identity system Vantix now uses consistently across their brand.",
-    caseLesson: "A brand system is only as good as its consistency — the goal is recognition, not just decoration.",
     gallery: []
   },
   {
@@ -1587,11 +1450,6 @@ const workData = [
     image: "images/brickpod.png",
     description: "Designed and built the website for Brickpod Studios, a podcast production studio. The site walks visitors through the studio experience, pricing plans, and booking flow, backed by a real gallery of the studio space to build trust before visitors ever step inside.",
     skills: ["Custom Website", "Booking Flow", "Pricing Page", "Responsive Design"],
-    caseBefore: "Brickpod Studios needed a website that actually reflected the business — first impressions were costing them credibility.",
-    caseChallenge: "Translating what Brickpod Studios does into a clear, fast, mobile-friendly site without over-complicating the message.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Launched a site Brickpod Studios now uses as the primary front door for new visitors and customers.",
-    caseLesson: "Good web design isn't decoration — it's the first impression that either builds or breaks trust in a brand.",
     gallery: []
   },
   {
@@ -1603,11 +1461,6 @@ const workData = [
     image: "images/careermap.png",
     description: "Built the marketing website for Career Map, an AI-powered career development platform for students and professionals. Focused on clearly explaining the AI tool's value with simple sections, testimonial-style highlights, and a low-friction sign-up flow.",
     skills: ["Custom Website", "Landing Page Design", "Conversion Optimization", "Responsive Design"],
-    caseBefore: "Career Map needed a website that actually reflected the business — first impressions were costing them credibility.",
-    caseChallenge: "Translating what Career Map does into a clear, fast, mobile-friendly site without over-complicating the message.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Launched a site Career Map now uses as the primary front door for new visitors and customers.",
-    caseLesson: "Good web design isn't decoration — it's the first impression that either builds or breaks trust in a brand.",
     gallery: []
   },
   {
@@ -1619,11 +1472,6 @@ const workData = [
     image: "images/fabric.png",
     description: "Built the product website for Fabric, an all-in-one AI workspace app. Structured the page around clear before/after comparisons and feature breakdowns to make a fairly abstract productivity tool easy to understand at a glance.",
     skills: ["Custom Website", "Product Marketing Site", "Feature Sections", "Responsive Design"],
-    caseBefore: "Fabric needed a website that actually reflected the business — first impressions were costing them credibility.",
-    caseChallenge: "Translating what Fabric does into a clear, fast, mobile-friendly site without over-complicating the message.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Launched a site Fabric now uses as the primary front door for new visitors and customers.",
-    caseLesson: "Good web design isn't decoration — it's the first impression that either builds or breaks trust in a brand.",
     gallery: []
   },
   {
@@ -1635,11 +1483,6 @@ const workData = [
     image: "images/gotlaundry.png",
     description: "Built a full marketing site for Got Laundry's pickup-and-delivery laundry service, including service breakdowns, an FAQ section, and a scheduling call-to-action repeated throughout the page to keep conversions front and center.",
     skills: ["Custom Website", "FAQ Section", "Service Pages", "Responsive Design"],
-    caseBefore: "Got Laundry needed a website that actually reflected the business — first impressions were costing them credibility.",
-    caseChallenge: "Translating what Got Laundry does into a clear, fast, mobile-friendly site without over-complicating the message.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Launched a site Got Laundry now uses as the primary front door for new visitors and customers.",
-    caseLesson: "Good web design isn't decoration — it's the first impression that either builds or breaks trust in a brand.",
     gallery: []
   },
   {
@@ -1651,11 +1494,6 @@ const workData = [
     image: "images/hajjplus.png",
     description: "Designed the website for Hajj Plus, a companion app for pilgrims performing Hajj and Umrah. Built out the feature walkthrough, pricing plans, and app download sections with a warm, respectful visual tone suited to the subject matter.",
     skills: ["Custom Website", "App Landing Page", "Pricing Plans", "Responsive Design"],
-    caseBefore: "Hajj Plus needed a website that actually reflected the business — first impressions were costing them credibility.",
-    caseChallenge: "Translating what Hajj Plus does into a clear, fast, mobile-friendly site without over-complicating the message.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Launched a site Hajj Plus now uses as the primary front door for new visitors and customers.",
-    caseLesson: "Good web design isn't decoration — it's the first impression that either builds or breaks trust in a brand.",
     gallery: []
   },
   {
@@ -1667,11 +1505,6 @@ const workData = [
     image: "images/noxus.png",
     description: "Built the website for Noxus, an enterprise AI platform. Prioritized a clean, credible layout with trust signals, measurable-impact stats, and client logos to speak directly to an enterprise buying audience.",
     skills: ["Custom Website", "Enterprise Web Design", "Trust Signals", "Responsive Design"],
-    caseBefore: "Noxus needed a website that actually reflected the business — first impressions were costing them credibility.",
-    caseChallenge: "Translating what Noxus does into a clear, fast, mobile-friendly site without over-complicating the message.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Launched a site Noxus now uses as the primary front door for new visitors and customers.",
-    caseLesson: "Good web design isn't decoration — it's the first impression that either builds or breaks trust in a brand.",
     gallery: []
   },
   {
@@ -1683,11 +1516,6 @@ const workData = [
     image: "images/qbankmodel.png",
     description: "Built the website for Q Bank Model, an AMC exam preparation platform for medical professionals. Structured the site around clear feature breakdowns, a dashboard preview, and genuine student testimonials to build credibility with a skeptical audience.",
     skills: ["Custom Website", "Subscription Site", "Testimonials Section", "Responsive Design"],
-    caseBefore: "Q Bank Model needed a website that actually reflected the business — first impressions were costing them credibility.",
-    caseChallenge: "Translating what Q Bank Model does into a clear, fast, mobile-friendly site without over-complicating the message.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Launched a site Q Bank Model now uses as the primary front door for new visitors and customers.",
-    caseLesson: "Good web design isn't decoration — it's the first impression that either builds or breaks trust in a brand.",
     gallery: []
   },
   {
@@ -1699,11 +1527,6 @@ const workData = [
     image: "images/visualtroops.png",
     description: "Built a bold, dark-themed website for Visual Troops, an e-commerce digital marketing agency. Used a strong visual identity, a services breakdown, and a project gallery to let the agency's own work speak for itself.",
     skills: ["Custom Website", "Portfolio Gallery", "Dark Theme Design", "Responsive Design"],
-    caseBefore: "Visual Troops needed a website that actually reflected the business — first impressions were costing them credibility.",
-    caseChallenge: "Translating what Visual Troops does into a clear, fast, mobile-friendly site without over-complicating the message.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Launched a site Visual Troops now uses as the primary front door for new visitors and customers.",
-    caseLesson: "Good web design isn't decoration — it's the first impression that either builds or breaks trust in a brand.",
     gallery: []
   },
   {
@@ -1715,11 +1538,6 @@ const workData = [
     image: "images/xaloon.png",
     description: "Designed and built the website for Xaloon, a beauty and wellness booking platform. Focused on a friendly, approachable layout that walks visitors through discovering a salon, picking a service, and booking — all in a few taps.",
     skills: ["Custom Website", "App Landing Page", "Booking Flow", "Responsive Design"],
-    caseBefore: "Xaloon needed a website that actually reflected the business — first impressions were costing them credibility.",
-    caseChallenge: "Translating what Xaloon does into a clear, fast, mobile-friendly site without over-complicating the message.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Launched a site Xaloon now uses as the primary front door for new visitors and customers.",
-    caseLesson: "Good web design isn't decoration — it's the first impression that either builds or breaks trust in a brand.",
     gallery: []
   },
   {
@@ -1731,11 +1549,6 @@ const workData = [
     image: "images/bakim.png",
     description: "Built the online store for Bakim, a natural hair care brand. Combined an editorial, magazine-style homepage with a full product catalog, signature treatment bundles, and a clean checkout so browsing feels as good as buying.",
     skills: ["E-Commerce", "Product Catalog", "Checkout Flow", "Brand Storytelling"],
-    caseBefore: "Bakim needed an online store that could handle real transactions, not just look good in a mockup.",
-    caseChallenge: "Balancing a smooth shopping experience with the practical realities of inventory, payments, and checkout flow.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a fully functioning store Bakim uses to sell and manage orders end to end.",
-    caseLesson: "E-commerce succeeds or fails at checkout — every extra step costs sales.",
     gallery: []
   },
   {
@@ -1747,11 +1560,6 @@ const workData = [
     image: "images/logo-design-01.png",
     description: "A collection of logo designs delivered for clients across industries — from beauty booking apps to career platforms to food brands. Each mark was built to work as a standalone icon as well as a full wordmark lockup.",
     skills: ["Logo Design", "Wordmark", "Icon Design", "Brand Mark"],
-    caseBefore: "Logo Design needed a visual identity that felt intentional, not thrown together.",
-    caseChallenge: "Designing a mark that works at every size — from a favicon to a storefront sign — without losing what makes it distinct.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a mark Logo Design now uses consistently across their brand touchpoints.",
-    caseLesson: "A logo is only as good as its versatility — if it doesn't work small, it doesn't work.",
     gallery: []
   },
   {
@@ -1763,11 +1571,6 @@ const workData = [
     image: "images/logo-design-02.png",
     description: "A second collection of logo designs spanning podcast studios, logistics platforms, publishing brands, and digital agencies — each identity tailored to its own industry and tone.",
     skills: ["Logo Design", "Wordmark", "Icon Design", "Brand Mark"],
-    caseBefore: "Logo Design needed a visual identity that felt intentional, not thrown together.",
-    caseChallenge: "Designing a mark that works at every size — from a favicon to a storefront sign — without losing what makes it distinct.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a mark Logo Design now uses consistently across their brand touchpoints.",
-    caseLesson: "A logo is only as good as its versatility — if it doesn't work small, it doesn't work.",
     gallery: []
   },
   {
@@ -1779,11 +1582,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
     description: "Planned and ran a three-month social media campaign for Pulse Wellness across Instagram and TikTok — content calendar, community management, and a small paid boost. Engagement and follower growth both accelerated within the first month.",
     skills: ["Content Calendar", "Community Management", "Paid Social", "Analytics Reporting"],
-    caseBefore: "Pulse Wellness had a presence on social media, but it wasn't translating into real engagement.",
-    caseChallenge: "Finding a content rhythm that felt authentic to the brand while still being consistent enough to build an audience.",
-    caseBuiltField: "whatWeDid",
-    caseResult: "Built a repeatable content system Pulse Wellness's team could sustain long after the initial engagement.",
-    caseLesson: "Consistency beats virality — a steady posting rhythm outperforms one-off viral attempts almost every time.",
     gallery: [
       "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
@@ -1798,11 +1596,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
     description: "Wrote, storyboarded, and animated a 40-second explainer video for Orbit's product launch. Distilled a fairly technical product into a simple visual story that the sales team now uses on every call.",
     skills: ["Script Writing", "Storyboarding", "Motion Graphics", "Voiceover & Sound"],
-    caseBefore: "Orbit had a product or story that was hard to explain in words alone.",
-    caseChallenge: "Distilling a sometimes-technical idea into something watchable in under a minute.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a video asset Orbit's team uses in sales conversations and on their site.",
-    caseLesson: "The best explainer videos don't try to cover everything — they cover the one thing that matters most.",
     gallery: [
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
@@ -1817,12 +1610,9 @@ const workData = [
     image: "images/continuum.png",
     description: "Built a dark, lab-grade e-commerce store for Continuum Peptides. Structured detailed compound pages with purity documentation, filterable browsing by category and size, and a streamlined cart built for a research-focused audience.",
     skills: ["E-Commerce", "Product Filtering", "Catalog Structure", "Dark Theme Design"],
-    caseBefore: "Continuum Peptides needed an online store that could handle real transactions, not just look good in a mockup.",
-    caseChallenge: "Balancing a smooth shopping experience with the practical realities of inventory, payments, and checkout flow.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a fully functioning store Continuum Peptides uses to sell and manage orders end to end.",
-    caseLesson: "E-commerce succeeds or fails at checkout — every extra step costs sales.",
     gallery: []
+  },
+  {
   },
   {
     id: "greenleaf-seo",
@@ -1833,11 +1623,6 @@ const workData = [
     image: "images/greenleaf-seo.png",
     description: "Focused entirely on local search for GreenLeaf — optimizing their Google Business profile, cleaning up citations, and building location-specific landing pages. Local map-pack visibility improved within weeks.",
     skills: ["Local SEO", "Google Business Profile", "Citation Cleanup", "Landing Pages"],
-    caseBefore: "GreenLeaf's site existed, but wasn't showing up where it mattered — organic search.",
-    caseChallenge: "Diagnosing what was actually holding back rankings, separate from what just looked like a problem.",
-    caseBuiltField: "whatWeDid",
-    caseResult: "Implemented the technical and content fixes GreenLeaf's site needed to compete in search, tracked ongoing through the client's own analytics.",
-    caseLesson: "SEO is rarely one fix — it's a series of small, correct decisions compounding over months.",
     gallery: []
   },
   {
@@ -1849,11 +1634,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
     description: "Designed a content strategy and posting cadence for Halo Fitness across Instagram and YouTube Shorts. Introduced a repeatable content framework the in-house team still uses today.",
     skills: ["Content Strategy", "Content Calendar", "Short-Form Video", "Analytics Reporting"],
-    caseBefore: "Halo Fitness had a presence on social media, but it wasn't translating into real engagement.",
-    caseChallenge: "Finding a content rhythm that felt authentic to the brand while still being consistent enough to build an audience.",
-    caseBuiltField: "whatWeDid",
-    caseResult: "Built a repeatable content system Halo Fitness's team could sustain long after the initial engagement.",
-    caseLesson: "Consistency beats virality — a steady posting rhythm outperforms one-off viral attempts almost every time.",
     gallery: []
   },
   {
@@ -1865,11 +1645,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
     description: "Produced a short animated sequence for Nimbus's in-app onboarding, guiding new users through core features in under 20 seconds. Reduced drop-off during first-time setup noticeably.",
     skills: ["Motion Graphics", "UI Animation", "Storyboarding", "Sound Design"],
-    caseBefore: "Nimbus had a product or story that was hard to explain in words alone.",
-    caseChallenge: "Distilling a sometimes-technical idea into something watchable in under a minute.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a video asset Nimbus's team uses in sales conversations and on their site.",
-    caseLesson: "The best explainer videos don't try to cover everything — they cover the one thing that matters most.",
     gallery: [
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70"
@@ -1884,11 +1659,6 @@ const workData = [
     image: "images/xaloon-app.png",
     description: "Built the Xaloon mobile app end-to-end — salon and stylist discovery with live map search, favorites, detailed service and stylist pages, and a smooth booking flow from browsing to confirmed appointment.",
     skills: ["Mobile App", "Map Integration", "Booking Flow", "UI/UX Design"],
-    caseBefore: "Xaloon needed custom software — off-the-shelf tools weren't fitting the actual workflow.",
-    caseChallenge: "Building something powerful enough to be useful, simple enough to actually get adopted by the team using it day to day.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Shipped a working product Xaloon uses as part of their daily operations.",
-    caseLesson: "Internal tools succeed when they remove steps, not when they add features — usability beats feature count.",
     gallery: []
   },
   {
@@ -1900,11 +1670,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
     description: "Refreshed Alta Coffee's aging brand identity — new mark, warmer color palette, and packaging that stood out on crowded shelves without losing the loyal customers who already knew the name.",
     skills: ["Brand Refresh", "Packaging Design", "Color Palette", "Brand Guidelines"],
-    caseBefore: "Alta Coffee needed a brand identity that felt intentional, not thrown together.",
-    caseChallenge: "Designing a system flexible enough to cover every touchpoint while keeping the brand instantly recognizable.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a full identity system Alta Coffee now uses consistently across their brand.",
-    caseLesson: "A brand system is only as good as its consistency — the goal is recognition, not just decoration.",
     gallery: [
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
@@ -1919,11 +1684,6 @@ const workData = [
     image: "images/coupon_ae.png",
     description: "Built the storefront for Coupon.AE, a deals and coupon-code platform for UAE shoppers. Organized hundreds of store listings and offers into browsable categories, with featured deal banners and a fast search that keeps bargain hunters coming back.",
     skills: ["E-Commerce", "Category Browsing", "Search & Filtering", "Deal Merchandising"],
-    caseBefore: "Coupon.AE needed an online store that could handle real transactions, not just look good in a mockup.",
-    caseChallenge: "Balancing a smooth shopping experience with the practical realities of inventory, payments, and checkout flow.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a fully functioning store Coupon.AE uses to sell and manage orders end to end.",
-    caseLesson: "E-commerce succeeds or fails at checkout — every extra step costs sales.",
     gallery: []
   },
   {
@@ -1935,11 +1695,6 @@ const workData = [
     image: "images/harbor-seo.png",
     description: "Rebuilt Harbor Realty's site architecture around neighborhood and listing pages, fixing duplicate-content issues that had been holding back rankings for years.",
     skills: ["Technical SEO", "Site Architecture", "On-Page Optimization", "Reporting"],
-    caseBefore: "Harbor Realty's site existed, but wasn't showing up where it mattered — organic search.",
-    caseChallenge: "Diagnosing what was actually holding back rankings, separate from what just looked like a problem.",
-    caseBuiltField: "whatWeDid",
-    caseResult: "Implemented the technical and content fixes Harbor Realty's site needed to compete in search, tracked ongoing through the client's own analytics.",
-    caseLesson: "SEO is rarely one fix — it's a series of small, correct decisions compounding over months.",
     gallery: []
   },
   {
@@ -1951,11 +1706,6 @@ const workData = [
     image: "images/craft-seo.png",
     description: "Built a content-led SEO plan for Craft & Co — keyword-mapped blog calendar, on-page refreshes for older posts, and internal linking that spread authority across the site.",
     skills: ["Content Strategy", "Keyword Mapping", "Internal Linking", "Blog Optimization"],
-    caseBefore: "Craft & Co's site existed, but wasn't showing up where it mattered — organic search.",
-    caseChallenge: "Diagnosing what was actually holding back rankings, separate from what just looked like a problem.",
-    caseBuiltField: "whatWeDid",
-    caseResult: "Implemented the technical and content fixes Craft & Co's site needed to compete in search, tracked ongoing through the client's own analytics.",
-    caseLesson: "SEO is rarely one fix — it's a series of small, correct decisions compounding over months.",
     gallery: []
   },
   {
@@ -1967,11 +1717,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
     description: "Grew Juniper Cafe's Instagram from a quiet local page into an active community hub — consistent posting, reels, and quick replies that turned followers into regular customers.",
     skills: ["Content Calendar", "Reels", "Community Management", "Local Engagement"],
-    caseBefore: "Juniper Cafe had a presence on social media, but it wasn't translating into real engagement.",
-    caseChallenge: "Finding a content rhythm that felt authentic to the brand while still being consistent enough to build an audience.",
-    caseBuiltField: "whatWeDid",
-    caseResult: "Built a repeatable content system Juniper Cafe's team could sustain long after the initial engagement.",
-    caseLesson: "Consistency beats virality — a steady posting rhythm outperforms one-off viral attempts almost every time.",
     gallery: []
   },
   {
@@ -1983,11 +1728,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
     description: "Launched Trail Mix Co's TikTok presence from zero — hook-driven short-form content and a consistent posting rhythm that built an audience within the first six weeks.",
     skills: ["Short-Form Video", "Content Strategy", "Trend Research", "Analytics Reporting"],
-    caseBefore: "Trail Mix Co had a presence on social media, but it wasn't translating into real engagement.",
-    caseChallenge: "Finding a content rhythm that felt authentic to the brand while still being consistent enough to build an audience.",
-    caseBuiltField: "whatWeDid",
-    caseResult: "Built a repeatable content system Trail Mix Co's team could sustain long after the initial engagement.",
-    caseLesson: "Consistency beats virality — a steady posting rhythm outperforms one-off viral attempts almost every time.",
     gallery: [
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70"
@@ -2002,11 +1742,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70",
     description: "Animated a 30-second launch video for Beacon's app store listing and homepage, distilling the core feature set into a punchy, share-ready clip.",
     skills: ["Motion Graphics", "Script Writing", "App Store Video", "Sound Design"],
-    caseBefore: "Beacon App had a product or story that was hard to explain in words alone.",
-    caseChallenge: "Distilling a sometimes-technical idea into something watchable in under a minute.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a video asset Beacon App's team uses in sales conversations and on their site.",
-    caseLesson: "The best explainer videos don't try to cover everything — they cover the one thing that matters most.",
     gallery: [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
       "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70"
@@ -2021,11 +1756,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
     description: "Built a technical product-demo animation for Flux Robotics that broke down a complex mechanical process into something a non-engineer investor could follow in under a minute.",
     skills: ["3D-Style Motion", "Storyboarding", "Technical Simplification", "Voiceover"],
-    caseBefore: "Flux Robotics had a product or story that was hard to explain in words alone.",
-    caseChallenge: "Distilling a sometimes-technical idea into something watchable in under a minute.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a video asset Flux Robotics's team uses in sales conversations and on their site.",
-    caseLesson: "The best explainer videos don't try to cover everything — they cover the one thing that matters most.",
     gallery: [
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
@@ -2040,11 +1770,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70",
     description: "Built a full brand identity for Meridian Studio from the ground up — naming direction input, logo suite, and a guideline document the team still references today.",
     skills: ["Brand Strategy", "Logo Suite", "Brand Guidelines", "Stationery"],
-    caseBefore: "Meridian Studio needed a brand identity that felt intentional, not thrown together.",
-    caseChallenge: "Designing a system flexible enough to cover every touchpoint while keeping the brand instantly recognizable.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a full identity system Meridian Studio now uses consistently across their brand.",
-    caseLesson: "A brand system is only as good as its consistency — the goal is recognition, not just decoration.",
     gallery: [
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=70",
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70"
@@ -2059,11 +1784,6 @@ const workData = [
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=70",
     description: "Modernized Oakwood Goods' decade-old branding — refined logo, updated color palette, and packaging redesign that kept the heritage feel customers loved.",
     skills: ["Rebrand", "Packaging Design", "Color Palette", "Brand Guidelines"],
-    caseBefore: "Oakwood Goods needed a brand identity that felt intentional, not thrown together.",
-    caseChallenge: "Designing a system flexible enough to cover every touchpoint while keeping the brand instantly recognizable.",
-    caseBuiltField: "whatWeBuilt",
-    caseResult: "Delivered a full identity system Oakwood Goods now uses consistently across their brand.",
-    caseLesson: "A brand system is only as good as its consistency — the goal is recognition, not just decoration.",
     gallery: [
       "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=70",
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=70"
@@ -2198,16 +1918,9 @@ function openWorkModal(id){
   document.getElementById('workModalTitle').textContent = project.title;
   document.getElementById('workModalRole').textContent = "My role — " + project.role;
   document.getElementById('workModalCategory').textContent = project.categoryLabel;
+  document.getElementById('workModalDesc').textContent = project.description;
   document.getElementById('workModalHero').src = project.image;
   document.getElementById('workModalHero').alt = project.title;
-
-  document.getElementById('workModalBefore').textContent = project.caseBefore || '';
-  document.getElementById('workModalChallenge').textContent = project.caseChallenge || '';
-  document.getElementById('workModalDesc').textContent = project.description;
-  document.getElementById('workModalBuiltLabel').textContent =
-    project.caseBuiltField === 'whatWeDid' ? 'What we did' : 'What we built';
-  document.getElementById('workModalResult').textContent = project.caseResult || '';
-  document.getElementById('workModalLesson').textContent = project.caseLesson || '';
 
   const skillsWrap = document.getElementById('workModalSkills');
   skillsWrap.innerHTML = project.skills.map(s => `<span class="skill-chip">${s}</span>`).join('');
