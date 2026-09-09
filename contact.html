@@ -190,7 +190,7 @@ footer a:hover{color:#fff;}
       <li><a href="index.html#services">Services</a></li>
       <li><a href="index.html#work">Work</a></li>
       <li><a href="index.html#about">About</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
+      <!-- <li><a href="pricing.html">Pricing</a></li> -->
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
     <a href="contact.html" class="btn-tack btn-tack-primary d-none d-lg-inline-flex">Book a Free Strategy Call</a>
@@ -209,7 +209,7 @@ footer a:hover{color:#fff;}
     <a href="index.html#services">Services</a>
     <a href="index.html#work">Work</a>
     <a href="index.html#about">About</a>
-    <a href="pricing.html">Pricing</a>
+    <!-- <a href="pricing.html">Pricing</a> -->
     <a href="contact.html">Contact</a>
   </div>
 </div>
@@ -312,8 +312,12 @@ footer a:hover{color:#fff;}
                 <input type="text" name="name" class="form-control-tack" required placeholder="Your name">
               </div>
               <div class="col-md-6">
-                <label class="form-label-tack">Email</label>
-                <input type="email" name="email" class="form-control-tack" required placeholder="you@email.com">
+                <label class="form-label-tack">Work Email</label>
+                <input type="email" name="email" class="form-control-tack" required placeholder="you@company.com">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label-tack">Company</label>
+                <input type="text" name="company" class="form-control-tack" placeholder="Your company name">
               </div>
               <div class="col-md-6">
                 <label class="form-label-tack">Phone</label>
@@ -330,9 +334,29 @@ footer a:hover{color:#fff;}
                   <option>Not sure yet</option>
                 </select>
               </div>
+              <div class="col-md-6">
+                <label class="form-label-tack">Timeline</label>
+                <select name="timeline" class="form-control-tack">
+                  <option value="">Select a timeline</option>
+                  <option>ASAP</option>
+                  <option>Within 1 month</option>
+                  <option>1–3 months</option>
+                  <option>Just exploring</option>
+                </select>
+              </div>
 
               <div class="col-12">
-                <label class="form-label-tack">Which service(s) do you need?</label>
+                <label class="form-label-tack">What are you trying to accomplish?</label>
+                <div class="d-flex flex-wrap gap-2" id="goalChips">
+                  <label class="service-chip"><input type="radio" name="goal" value="I have an idea — build my MVP">I have an idea — build my MVP</label>
+                  <label class="service-chip"><input type="radio" name="goal" value="I have a product — grow my business">I have a product — grow my business</label>
+                  <label class="service-chip"><input type="radio" name="goal" value="My tech is holding me back — rebuild my software">My tech is holding me back — rebuild it</label>
+                  <label class="service-chip"><input type="radio" name="goal" value="Not sure — get a free audit">I'm not sure — get a free audit</label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label-tack">Which service(s) are you interested in? <span style="text-transform:none; opacity:.7;">(optional)</span></label>
                 <div class="d-flex flex-wrap gap-2" id="serviceChips">
                   <label class="service-chip"><input type="checkbox" name="services" value="Logo Design">Logo Design</label>
                   <label class="service-chip"><input type="checkbox" name="services" value="Custom Website">Custom Website</label>
@@ -421,16 +445,16 @@ footer a:hover{color:#fff;}
           <a href="index.html#about">About</a>
           <a href="index.html#services">Services</a>
           <a href="index.html#work">Work</a>
-          <a href="pricing.html">Pricing</a>
+          <a href="index.html#testimonials">Reviews</a>
         </div>
       </div>
       <div class="col-lg-2 col-6">
         <h5>Solutions</h5>
         <div class="d-flex flex-column gap-2">
-          <a href="contact.html?goal=mvp">MVP Development</a>
-          <a href="contact.html?goal=growth">Product Growth</a>
-          <a href="contact.html?goal=rebuild">Software Rebuild</a>
-          <a href="contact.html?goal=audit">Free Audit</a>
+          <a href="mvp-development.html">MVP Development</a>
+          <a href="product-growth.html">Product Growth</a>
+          <a href="software-rebuild.html">Software Rebuild</a>
+          <a href="product-audit.html">Free Audit</a>
         </div>
       </div>
       <div class="col-lg-4">
@@ -471,9 +495,36 @@ revealEls.forEach(el => revealObserver.observe(el));
 /* ===== Service chip toggle styling ===== */
 document.querySelectorAll('.service-chip input').forEach(chk => {
   chk.addEventListener('change', () => {
-    chk.closest('.service-chip').classList.toggle('checked', chk.checked);
+    if (chk.type === 'radio') {
+      // uncheck siblings in the same radio group visually
+      document.querySelectorAll(`input[name="${chk.name}"]`).forEach(sib => {
+        sib.closest('.service-chip').classList.toggle('checked', sib.checked);
+      });
+    } else {
+      chk.closest('.service-chip').classList.toggle('checked', chk.checked);
+    }
   });
 });
+
+/* Pre-select "What are you trying to accomplish?" from a ?goal= link
+   (used by the homepage path-selector cards, e.g. contact.html?goal=mvp) */
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const goal = params.get('goal');
+  const goalMap = {
+    mvp: "I have an idea — build my MVP",
+    growth: "I have a product — grow my business",
+    rebuild: "My tech is holding me back — rebuild my software",
+    audit: "Not sure — get a free audit"
+  };
+  if (goal && goalMap[goal]) {
+    const input = document.querySelector(`input[name="goal"][value="${goalMap[goal]}"]`);
+    if (input) {
+      input.checked = true;
+      input.closest('.service-chip').classList.add('checked');
+    }
+  }
+})();
 
 /* ===== FAQ accordion ===== */
 document.querySelectorAll('.faq-item').forEach(item => {
